@@ -2006,6 +2006,1385 @@
                     </div>
                 </section>
 
+                <!-- SQL vs NoSQL Section -->
+                <section id="sql-vs-nosql" class="content-section">
+                    <h2>SQL vs NoSQL</h2>
+                    <div class="section-content">
+                        <p>Choosing between SQL and NoSQL databases depends on your specific requirements for data structure, scalability, consistency, and query patterns.</p>
+                        
+                        <div class="comparison-grid">
+                            <div class="comparison-card">
+                                <h3>SQL (Relational Databases)</h3>
+                                <h4>Characteristics:</h4>
+                                <ul>
+                                    <li>Structured data with predefined schema</li>
+                                    <li>ACID transactions (Atomicity, Consistency, Isolation, Durability)</li>
+                                    <li>Relationships via foreign keys</li>
+                                    <li>Powerful query language (SQL)</li>
+                                    <li>Vertical scaling primarily</li>
+                                </ul>
+                                <h4>Best For:</h4>
+                                <ul>
+                                    <li>Complex queries and joins</li>
+                                    <li>Transactions requiring ACID guarantees</li>
+                                    <li>Structured data with clear relationships</li>
+                                    <li>Financial systems, e-commerce</li>
+                                </ul>
+                                <h4>Examples:</h4>
+                                <p>PostgreSQL, MySQL, Oracle, SQL Server</p>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h3>NoSQL (Non-Relational Databases)</h3>
+                                <h4>Characteristics:</h4>
+                                <ul>
+                                    <li>Flexible schema or schema-less</li>
+                                    <li>BASE properties (Basically Available, Soft state, Eventual consistency)</li>
+                                    <li>Horizontal scaling</li>
+                                    <li>Optimized for specific data models</li>
+                                    <li>High performance for specific use cases</li>
+                                </ul>
+                                <h4>Best For:</h4>
+                                <ul>
+                                    <li>Massive scale and high throughput</li>
+                                    <li>Flexible or evolving data models</li>
+                                    <li>Hierarchical or unstructured data</li>
+                                    <li>Real-time applications, IoT, social media</li>
+                                </ul>
+                                <h4>Types:</h4>
+                                <p>Key-Value, Document, Column-Family, Graph</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Database Replication Section -->
+                <section id="database-replication" class="content-section">
+                    <h2>Database Replication</h2>
+                    <div class="section-content">
+                        <p>Database replication involves copying and maintaining database objects in multiple database servers for redundancy, availability, and performance.</p>
+                        
+                        <div class="replication-types">
+                            <div class="replication-card">
+                                <h3>Master-Slave Replication</h3>
+                                <p>One master handles writes, multiple slaves handle reads</p>
+                                <div class="flow-diagram">
+                                    <div class="flow-step">Master (Write) → Replication → Slave 1 (Read)</div>
+                                    <div class="flow-step">Master (Write) → Replication → Slave 2 (Read)</div>
+                                    <div class="flow-step">Master (Write) → Replication → Slave 3 (Read)</div>
+                                </div>
+                                <p><strong>Pros:</strong> Scales reads, simple to implement</p>
+                                <p><strong>Cons:</strong> Single point of failure (master), replication lag</p>
+                            </div>
+
+                            <div class="replication-card">
+                                <h3>Master-Master Replication</h3>
+                                <p>Multiple masters can handle both reads and writes</p>
+                                <div class="flow-diagram">
+                                    <div class="flow-step">Master 1 (Read/Write) ↔ Master 2 (Read/Write)</div>
+                                </div>
+                                <p><strong>Pros:</strong> No single point of failure, scales both reads and writes</p>
+                                <p><strong>Cons:</strong> Complex conflict resolution, consistency challenges</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Database Sharding Section -->
+                <section id="database-sharding" class="content-section">
+                    <h2>Database Sharding</h2>
+                    <div class="section-content">
+                        <p>Sharding is a database partitioning technique that splits data across multiple database instances (shards) to improve scalability and performance.</p>
+                        
+                        <h3>Sharding Strategies</h3>
+                        <div class="sharding-strategies">
+                            <div class="strategy-card">
+                                <h4>Hash-Based Sharding</h4>
+                                <p>Use a hash function on a key to determine which shard stores the data</p>
+                                <p><strong>Example:</strong> user_id % num_shards</p>
+                                <p><strong>Pros:</strong> Even distribution</p>
+                                <p><strong>Cons:</strong> Difficult to add/remove shards</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>Range-Based Sharding</h4>
+                                <p>Partition data based on ranges of a key</p>
+                                <p><strong>Example:</strong> A-M → Shard 1, N-Z → Shard 2</p>
+                                <p><strong>Pros:</strong> Simple, good for range queries</p>
+                                <p><strong>Cons:</strong> Can lead to hotspots</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>Directory-Based Sharding</h4>
+                                <p>Maintain a lookup table that maps keys to shards</p>
+                                <p><strong>Pros:</strong> Flexible, easy to add shards</p>
+                                <p><strong>Cons:</strong> Lookup table is a single point of failure</p>
+                            </div>
+                        </div>
+
+                        <h3>Challenges</h3>
+                        <ul>
+                            <li>Joins across shards are expensive</li>
+                            <li>Rebalancing data when adding/removing shards</li>
+                            <li>Maintaining referential integrity</li>
+                            <li>Increased complexity in application logic</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Database Federation Section -->
+                <section id="database-federation" class="content-section">
+                    <h2>Database Federation</h2>
+                    <div class="section-content">
+                        <p>Federation (functional partitioning) splits databases by function, with each database serving a specific domain or feature.</p>
+                        
+                        <div class="federation-example">
+                            <h3>Example Architecture</h3>
+                            <div class="federation-diagram">
+                                <div class="fed-db">Users DB → User profiles, authentication</div>
+                                <div class="fed-db">Products DB → Product catalog, inventory</div>
+                                <div class="fed-db">Orders DB → Order history, transactions</div>
+                                <div class="fed-db">Analytics DB → Reporting, metrics</div>
+                            </div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Reduces read/write traffic to each database</li>
+                            <li>Smaller databases are faster to query</li>
+                            <li>Can use different database technologies per function</li>
+                            <li>Easier to scale specific functions independently</li>
+                        </ul>
+
+                        <h3>Drawbacks</h3>
+                        <ul>
+                            <li>Joins across databases require application-level logic</li>
+                            <li>Increased complexity in maintaining multiple databases</li>
+                            <li>Transactions spanning multiple databases are difficult</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Denormalization Section -->
+                <section id="denormalization" class="content-section">
+                    <h2>Denormalization</h2>
+                    <div class="section-content">
+                        <p>Denormalization is the process of adding redundant data to improve read performance by reducing the need for expensive joins.</p>
+                        
+                        <div class="norm-vs-denorm">
+                            <div class="comparison-card">
+                                <h3>Normalized (3NF)</h3>
+                                <p>Data is organized to minimize redundancy</p>
+                                <div class="example-box">
+                                    <p><strong>Users Table:</strong> user_id, name</p>
+                                    <p><strong>Orders Table:</strong> order_id, user_id, product_id</p>
+                                    <p><strong>Products Table:</strong> product_id, name, price</p>
+                                </div>
+                                <p><strong>Pros:</strong> No data redundancy, easier updates</p>
+                                <p><strong>Cons:</strong> Requires joins, slower reads</p>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h3>Denormalized</h3>
+                                <p>Redundant data is added for faster reads</p>
+                                <div class="example-box">
+                                    <p><strong>Orders Table:</strong> order_id, user_id, user_name, product_id, product_name, product_price</p>
+                                </div>
+                                <p><strong>Pros:</strong> Faster reads, no joins needed</p>
+                                <p><strong>Cons:</strong> Data redundancy, complex updates</p>
+                            </div>
+                        </div>
+
+                        <h3>When to Denormalize</h3>
+                        <ul>
+                            <li>Read-heavy workloads where performance is critical</li>
+                            <li>Data that rarely changes</li>
+                            <li>When joins are becoming a bottleneck</li>
+                            <li>Reporting and analytics queries</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SQL Tuning Section -->
+                <section id="sql-tuning" class="content-section">
+                    <h2>SQL Tuning</h2>
+                    <div class="section-content">
+                        <p>SQL tuning involves optimizing database queries and schema design to improve performance.</p>
+                        
+                        <h3>Key Optimization Techniques</h3>
+                        <div class="tuning-techniques">
+                            <div class="technique-card">
+                                <h4>1. Indexing</h4>
+                                <ul>
+                                    <li>Create indexes on frequently queried columns</li>
+                                    <li>Use composite indexes for multi-column queries</li>
+                                    <li>Avoid over-indexing (slows writes)</li>
+                                    <li>Use covering indexes to avoid table lookups</li>
+                                </ul>
+                            </div>
+
+                            <div class="technique-card">
+                                <h4>2. Query Optimization</h4>
+                                <ul>
+                                    <li>Use EXPLAIN to analyze query execution plans</li>
+                                    <li>Avoid SELECT * - specify needed columns</li>
+                                    <li>Use WHERE clauses to filter early</li>
+                                    <li>Avoid functions on indexed columns in WHERE</li>
+                                    <li>Use LIMIT to restrict result sets</li>
+                                </ul>
+                            </div>
+
+                            <div class="technique-card">
+                                <h4>3. Join Optimization</h4>
+                                <ul>
+                                    <li>Join on indexed columns</li>
+                                    <li>Use appropriate join types (INNER, LEFT, etc.)</li>
+                                    <li>Consider denormalization for complex joins</li>
+                                    <li>Use subqueries judiciously</li>
+                                </ul>
+                            </div>
+
+                            <div class="technique-card">
+                                <h4>4. Schema Design</h4>
+                                <ul>
+                                    <li>Choose appropriate data types</li>
+                                    <li>Normalize to reduce redundancy</li>
+                                    <li>Denormalize for read performance</li>
+                                    <li>Partition large tables</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NoSQL Types Section -->
+                <section id="key-value-store" class="content-section">
+                    <h2>Key-Value Store</h2>
+                    <div class="section-content">
+                        <p>Key-value stores are the simplest NoSQL databases, storing data as a collection of key-value pairs.</p>
+                        
+                        <h3>Characteristics</h3>
+                        <ul>
+                            <li>Extremely fast lookups by key</li>
+                            <li>Simple data model: key → value</li>
+                            <li>Horizontal scalability</li>
+                            <li>No complex queries or joins</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Session management</li>
+                            <li>User preferences and profiles</li>
+                            <li>Shopping carts</li>
+                            <li>Caching layer</li>
+                        </ul>
+
+                        <h3>Examples</h3>
+                        <p><strong>Redis:</strong> In-memory, supports data structures</p>
+                        <p><strong>DynamoDB:</strong> AWS managed, highly scalable</p>
+                        <p><strong>Memcached:</strong> Simple caching</p>
+                    </div>
+                </section>
+
+                <section id="document-store" class="content-section">
+                    <h2>Document Store</h2>
+                    <div class="section-content">
+                        <p>Document stores manage semi-structured data as documents (typically JSON, BSON, or XML).</p>
+                        
+                        <h3>Characteristics</h3>
+                        <ul>
+                            <li>Flexible schema - each document can have different fields</li>
+                            <li>Documents can be nested and contain arrays</li>
+                            <li>Query by any field in the document</li>
+                            <li>Good for hierarchical data</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Content management systems</li>
+                            <li>User profiles with varying attributes</li>
+                            <li>Product catalogs</li>
+                            <li>Real-time analytics</li>
+                        </ul>
+
+                        <h3>Examples</h3>
+                        <p><strong>MongoDB:</strong> Most popular, rich query language</p>
+                        <p><strong>Couchbase:</strong> High performance, mobile sync</p>
+                        <p><strong>Firestore:</strong> Google's real-time database</p>
+                    </div>
+                </section>
+
+                <section id="wide-column-store" class="content-section">
+                    <h2>Wide Column Store</h2>
+                    <div class="section-content">
+                        <p>Wide column stores organize data in columns rather than rows, optimized for queries over large datasets.</p>
+                        
+                        <h3>Characteristics</h3>
+                        <ul>
+                            <li>Data stored in column families</li>
+                            <li>Each row can have different columns</li>
+                            <li>Optimized for write-heavy workloads</li>
+                            <li>Excellent for time-series data</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Time-series data (IoT sensors, logs)</li>
+                            <li>Event logging</li>
+                            <li>Analytics on large datasets</li>
+                            <li>Recommendation engines</li>
+                        </ul>
+
+                        <h3>Examples</h3>
+                        <p><strong>Cassandra:</strong> Highly scalable, no single point of failure</p>
+                        <p><strong>HBase:</strong> Built on Hadoop, good for real-time reads/writes</p>
+                        <p><strong>ScyllaDB:</strong> Cassandra-compatible, higher performance</p>
+                    </div>
+                </section>
+
+                <section id="graph-database" class="content-section">
+                    <h2>Graph Database</h2>
+                    <div class="section-content">
+                        <p>Graph databases store data as nodes and relationships, optimized for traversing connections.</p>
+                        
+                        <h3>Characteristics</h3>
+                        <ul>
+                            <li>Nodes represent entities</li>
+                            <li>Edges represent relationships</li>
+                            <li>Properties on both nodes and edges</li>
+                            <li>Optimized for relationship queries</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Social networks (friends, followers)</li>
+                            <li>Recommendation engines</li>
+                            <li>Fraud detection</li>
+                            <li>Knowledge graphs</li>
+                            <li>Network and IT operations</li>
+                        </ul>
+
+                        <h3>Examples</h3>
+                        <p><strong>Neo4j:</strong> Most popular, Cypher query language</p>
+                        <p><strong>Amazon Neptune:</strong> AWS managed graph database</p>
+                        <p><strong>ArangoDB:</strong> Multi-model (document, graph, key-value)</p>
+                    </div>
+                </section>
+
+                <!-- Caching Section -->
+                <section id="caching" class="content-section">
+                    <h2>Caching</h2>
+                    <div class="section-content">
+                        <p>Caching stores frequently accessed data in fast storage to reduce latency and database load.</p>
+                        
+                        <h3>Cache Levels</h3>
+                        <div class="cache-levels">
+                            <div class="cache-level">Client Caching → Browser cache, mobile app cache</div>
+                            <div class="cache-level">CDN Caching → Static content at edge locations</div>
+                            <div class="cache-level">Web Server Caching → Reverse proxy cache (Varnish, Nginx)</div>
+                            <div class="cache-level">Application Caching → In-memory cache (Redis, Memcached)</div>
+                            <div class="cache-level">Database Caching → Query result cache, buffer pool</div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Reduced latency - faster response times</li>
+                            <li>Reduced database load</li>
+                            <li>Improved scalability</li>
+                            <li>Cost savings on database resources</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="cache-strategies" class="content-section">
+                    <h2>Cache Strategies</h2>
+                    <div class="section-content">
+                        <p>Different caching strategies determine how data is loaded into and updated in the cache.</p>
+                        
+                        <div class="strategy-grid">
+                            <div class="strategy-card">
+                                <h3>Cache-Aside (Lazy Loading)</h3>
+                                <p>Application checks cache first, loads from DB on miss</p>
+                                <div class="flow-diagram">
+                                    <div class="flow-step">1. App checks cache</div>
+                                    <div class="flow-step">2. Cache miss → Read from DB</div>
+                                    <div class="flow-step">3. Write to cache</div>
+                                    <div class="flow-step">4. Return data</div>
+                                </div>
+                                <p><strong>Pros:</strong> Only caches requested data</p>
+                                <p><strong>Cons:</strong> Cache miss penalty, stale data possible</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h3>Write-Through</h3>
+                                <p>Data is written to cache and database simultaneously</p>
+                                <div class="flow-diagram">
+                                    <div class="flow-step">1. Write to cache</div>
+                                    <div class="flow-step">2. Write to DB (synchronous)</div>
+                                    <div class="flow-step">3. Confirm write</div>
+                                </div>
+                                <p><strong>Pros:</strong> Cache always consistent with DB</p>
+                                <p><strong>Cons:</strong> Higher write latency</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h3>Write-Behind (Write-Back)</h3>
+                                <p>Data written to cache first, DB updated asynchronously</p>
+                                <div class="flow-diagram">
+                                    <div class="flow-step">1. Write to cache</div>
+                                    <div class="flow-step">2. Confirm write immediately</div>
+                                    <div class="flow-step">3. Async write to DB later</div>
+                                </div>
+                                <p><strong>Pros:</strong> Low write latency, batching possible</p>
+                                <p><strong>Cons:</strong> Risk of data loss if cache fails</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h3>Refresh-Ahead</h3>
+                                <p>Automatically refresh cache before expiration</p>
+                                <div class="flow-diagram">
+                                    <div class="flow-step">1. Predict which data will be needed</div>
+                                    <div class="flow-step">2. Refresh before TTL expires</div>
+                                    <div class="flow-step">3. Always serve from cache</div>
+                                </div>
+                                <p><strong>Pros:</strong> Reduced latency for predicted data</p>
+                                <p><strong>Cons:</strong> Can waste resources on unused data</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cache-types" class="content-section">
+                    <h2>Types of Caching</h2>
+                    <div class="section-content">
+                        <h3>Eviction Policies</h3>
+                        <div class="eviction-policies">
+                            <div class="policy-card">
+                                <h4>LRU (Least Recently Used)</h4>
+                                <p>Evicts the least recently accessed items first</p>
+                                <p><strong>Best for:</strong> General purpose caching</p>
+                            </div>
+
+                            <div class="policy-card">
+                                <h4>LFU (Least Frequently Used)</h4>
+                                <p>Evicts items accessed least often</p>
+                                <p><strong>Best for:</strong> Long-term access patterns</p>
+                            </div>
+
+                            <div class="policy-card">
+                                <h4>FIFO (First In First Out)</h4>
+                                <p>Evicts oldest items first</p>
+                                <p><strong>Best for:</strong> Simple, predictable eviction</p>
+                            </div>
+
+                            <div class="policy-card">
+                                <h4>TTL (Time To Live)</h4>
+                                <p>Items expire after a set time</p>
+                                <p><strong>Best for:</strong> Time-sensitive data</p>
+                            </div>
+                        </div>
+
+                        <h3>Cache Invalidation</h3>
+                        <p>Keeping cache consistent with the source of truth is one of the hardest problems in computer science.</p>
+                        <ul>
+                            <li><strong>TTL-based:</strong> Set expiration time for cached data</li>
+                            <li><strong>Event-based:</strong> Invalidate on data updates</li>
+                            <li><strong>Manual:</strong> Explicit cache clearing</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Asynchronism Section -->
+                <section id="message-queues" class="content-section">
+                    <h2>Message Queues</h2>
+                    <div class="section-content">
+                        <p>Message queues enable asynchronous communication between services by storing messages until they can be processed.</p>
+                        
+                        <h3>How Message Queues Work</h3>
+                        <div class="queue-diagram">
+                            <div class="queue-flow">Producer → Message Queue → Consumer</div>
+                            <div class="queue-flow">Multiple Producers → Queue → Multiple Consumers</div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Decoupling - producers and consumers are independent</li>
+                            <li>Scalability - add more consumers to handle load</li>
+                            <li>Reliability - messages persisted until processed</li>
+                            <li>Load leveling - smooth out traffic spikes</li>
+                        </ul>
+
+                        <h3>Common Patterns</h3>
+                        <div class="pattern-grid">
+                            <div class="pattern-card">
+                                <h4>Work Queue</h4>
+                                <p>Distribute tasks among workers</p>
+                                <p><strong>Use case:</strong> Image processing, email sending</p>
+                            </div>
+
+                            <div class="pattern-card">
+                                <h4>Pub/Sub</h4>
+                                <p>Broadcast messages to multiple subscribers</p>
+                                <p><strong>Use case:</strong> Event notifications, real-time updates</p>
+                            </div>
+                        </div>
+
+                        <h3>Examples</h3>
+                        <p><strong>RabbitMQ:</strong> Feature-rich, supports multiple protocols</p>
+                        <p><strong>Apache Kafka:</strong> High throughput, distributed streaming</p>
+                        <p><strong>AWS SQS:</strong> Managed, simple to use</p>
+                        <p><strong>Redis Streams:</strong> Fast, in-memory</p>
+                    </div>
+                </section>
+
+                <section id="task-queues" class="content-section">
+                    <h2>Task Queues</h2>
+                    <div class="section-content">
+                        <p>Task queues manage background jobs and scheduled tasks, allowing applications to offload time-consuming operations.</p>
+                        
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Sending emails asynchronously</li>
+                            <li>Processing uploaded files</li>
+                            <li>Generating reports</li>
+                            <li>Scheduled maintenance tasks</li>
+                            <li>Batch processing</li>
+                        </ul>
+
+                        <h3>Task Queue Components</h3>
+                        <div class="component-grid">
+                            <div class="component-card">
+                                <h4>Producer</h4>
+                                <p>Creates and enqueues tasks</p>
+                            </div>
+
+                            <div class="component-card">
+                                <h4>Queue/Broker</h4>
+                                <p>Stores tasks until workers are available</p>
+                            </div>
+
+                            <div class="component-card">
+                                <h4>Worker</h4>
+                                <p>Processes tasks from the queue</p>
+                            </div>
+
+                            <div class="component-card">
+                                <h4>Result Backend</h4>
+                                <p>Stores task results and status</p>
+                            </div>
+                        </div>
+
+                        <h3>Examples</h3>
+                        <p><strong>Celery:</strong> Python, distributed task queue</p>
+                        <p><strong>Bull:</strong> Node.js, Redis-based</p>
+                        <p><strong>Sidekiq:</strong> Ruby, efficient background processing</p>
+                    </div>
+                </section>
+
+                <section id="back-pressure" class="content-section">
+                    <h2>Back Pressure</h2>
+                    <div class="section-content">
+                        <p>Back pressure occurs when a system receives more requests than it can handle, requiring mechanisms to prevent overload.</p>
+                        
+                        <h3>Handling Back Pressure</h3>
+                        <div class="backpressure-strategies">
+                            <div class="strategy-card">
+                                <h4>1. Buffering</h4>
+                                <p>Queue requests temporarily</p>
+                                <p><strong>Risk:</strong> Buffer overflow if sustained overload</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>2. Dropping</h4>
+                                <p>Reject new requests when overloaded</p>
+                                <p><strong>Strategy:</strong> Return 503 Service Unavailable</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>3. Throttling</h4>
+                                <p>Limit request rate per client</p>
+                                <p><strong>Methods:</strong> Rate limiting, token bucket</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>4. Auto-scaling</h4>
+                                <p>Add more workers/servers dynamically</p>
+                                <p><strong>Benefit:</strong> Handles temporary spikes</p>
+                            </div>
+                        </div>
+
+                        <h3>Monitoring Back Pressure</h3>
+                        <ul>
+                            <li>Queue depth/length</li>
+                            <li>Consumer lag</li>
+                            <li>Request latency</li>
+                            <li>Error rates</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Communication Section -->
+                <section id="http" class="content-section">
+                    <h2>HTTP</h2>
+                    <div class="section-content">
+                        <p>HTTP (Hypertext Transfer Protocol) is the foundation of data communication on the web, operating at the application layer.</p>
+                        
+                        <h3>HTTP Methods</h3>
+                        <div class="method-grid">
+                            <div class="method-card">
+                                <h4>GET</h4>
+                                <p>Retrieve data, idempotent, cacheable</p>
+                            </div>
+                            <div class="method-card">
+                                <h4>POST</h4>
+                                <p>Create resources, not idempotent</p>
+                            </div>
+                            <div class="method-card">
+                                <h4>PUT</h4>
+                                <p>Update/replace resources, idempotent</p>
+                            </div>
+                            <div class="method-card">
+                                <h4>PATCH</h4>
+                                <p>Partial update, idempotent</p>
+                            </div>
+                            <div class="method-card">
+                                <h4>DELETE</h4>
+                                <p>Remove resources, idempotent</p>
+                            </div>
+                        </div>
+
+                        <h3>HTTP Status Codes</h3>
+                        <ul>
+                            <li><strong>2xx Success:</strong> 200 OK, 201 Created, 204 No Content</li>
+                            <li><strong>3xx Redirection:</strong> 301 Moved Permanently, 304 Not Modified</li>
+                            <li><strong>4xx Client Error:</strong> 400 Bad Request, 401 Unauthorized, 404 Not Found</li>
+                            <li><strong>5xx Server Error:</strong> 500 Internal Server Error, 503 Service Unavailable</li>
+                        </ul>
+
+                        <h3>HTTP/2 and HTTP/3</h3>
+                        <p><strong>HTTP/2:</strong> Multiplexing, server push, header compression</p>
+                        <p><strong>HTTP/3:</strong> Built on QUIC (UDP), faster connection establishment</p>
+                    </div>
+                </section>
+
+                <section id="tcp" class="content-section">
+                    <h2>TCP</h2>
+                    <div class="section-content">
+                        <p>TCP (Transmission Control Protocol) provides reliable, ordered, and error-checked delivery of data between applications.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><strong>Connection-oriented:</strong> Three-way handshake (SYN, SYN-ACK, ACK)</li>
+                            <li><strong>Reliable:</strong> Acknowledgments and retransmissions</li>
+                            <li><strong>Ordered:</strong> Packets delivered in sequence</li>
+                            <li><strong>Flow control:</strong> Prevents overwhelming receiver</li>
+                            <li><strong>Congestion control:</strong> Adapts to network conditions</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Web browsing (HTTP/HTTPS)</li>
+                            <li>Email (SMTP, IMAP)</li>
+                            <li>File transfer (FTP, SFTP)</li>
+                            <li>Any application requiring reliable delivery</li>
+                        </ul>
+
+                        <h3>Trade-offs</h3>
+                        <p><strong>Pros:</strong> Reliable, ordered delivery</p>
+                        <p><strong>Cons:</strong> Higher latency due to handshakes and acknowledgments</p>
+                    </div>
+                </section>
+
+                <section id="udp" class="content-section">
+                    <h2>UDP</h2>
+                    <div class="section-content">
+                        <p>UDP (User Datagram Protocol) is a connectionless protocol that sends data without guaranteeing delivery or order.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><strong>Connectionless:</strong> No handshake, just send</li>
+                            <li><strong>Unreliable:</strong> No acknowledgments or retransmissions</li>
+                            <li><strong>Unordered:</strong> Packets may arrive out of order</li>
+                            <li><strong>Low overhead:</strong> Minimal protocol overhead</li>
+                            <li><strong>Fast:</strong> Lower latency than TCP</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Video streaming (some packet loss acceptable)</li>
+                            <li>Online gaming (low latency critical)</li>
+                            <li>VoIP (Voice over IP)</li>
+                            <li>DNS queries</li>
+                            <li>IoT sensors (frequent small updates)</li>
+                        </ul>
+
+                        <h3>Trade-offs</h3>
+                        <p><strong>Pros:</strong> Low latency, low overhead</p>
+                        <p><strong>Cons:</strong> No reliability guarantees, application must handle packet loss</p>
+                    </div>
+                </section>
+
+                <section id="rpc" class="content-section">
+                    <h2>RPC (Remote Procedure Call)</h2>
+                    <div class="section-content">
+                        <p>RPC allows a program to execute procedures on a remote server as if they were local function calls.</p>
+                        
+                        <h3>How RPC Works</h3>
+                        <div class="flow-diagram">
+                            <div class="flow-step">1. Client calls local stub</div>
+                            <div class="flow-step">2. Stub marshals parameters</div>
+                            <div class="flow-step">3. Network transmission</div>
+                            <div class="flow-step">4. Server stub unmarshals parameters</div>
+                            <div class="flow-step">5. Execute procedure</div>
+                            <div class="flow-step">6. Return result to client</div>
+                        </div>
+
+                        <h3>gRPC</h3>
+                        <p>Modern RPC framework by Google using Protocol Buffers</p>
+                        <ul>
+                            <li>HTTP/2 based</li>
+                            <li>Binary protocol (efficient)</li>
+                            <li>Strongly typed contracts</li>
+                            <li>Supports streaming</li>
+                            <li>Multiple language support</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Microservices communication</li>
+                            <li>Internal APIs</li>
+                            <li>Real-time services</li>
+                            <li>Mobile-backend communication</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="rest" class="content-section">
+                    <h2>REST (Representational State Transfer)</h2>
+                    <div class="section-content">
+                        <p>REST is an architectural style for designing networked applications using HTTP methods and stateless communication.</p>
+                        
+                        <h3>REST Principles</h3>
+                        <ul>
+                            <li><strong>Stateless:</strong> Each request contains all necessary information</li>
+                            <li><strong>Client-Server:</strong> Separation of concerns</li>
+                            <li><strong>Cacheable:</strong> Responses can be cached</li>
+                            <li><strong>Uniform Interface:</strong> Consistent API design</li>
+                            <li><strong>Layered System:</strong> Intermediaries allowed</li>
+                        </ul>
+
+                        <h3>RESTful API Design</h3>
+                        <div class="api-examples">
+                            <p><strong>GET /users</strong> - List all users</p>
+                            <p><strong>GET /users/123</strong> - Get user 123</p>
+                            <p><strong>POST /users</strong> - Create new user</p>
+                            <p><strong>PUT /users/123</strong> - Update user 123</p>
+                            <p><strong>DELETE /users/123</strong> - Delete user 123</p>
+                        </div>
+
+                        <h3>Advantages</h3>
+                        <ul>
+                            <li>Simple and intuitive</li>
+                            <li>Leverages HTTP features (caching, status codes)</li>
+                            <li>Stateless (easy to scale)</li>
+                            <li>Wide tooling support</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="graphql" class="content-section">
+                    <h2>GraphQL</h2>
+                    <div class="section-content">
+                        <p>GraphQL is a query language for APIs that allows clients to request exactly the data they need.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><strong>Single endpoint:</strong> All queries to one URL</li>
+                            <li><strong>Client-specified queries:</strong> Request exactly what you need</li>
+                            <li><strong>Strongly typed schema:</strong> Self-documenting API</li>
+                            <li><strong>No over-fetching:</strong> Get only requested fields</li>
+                            <li><strong>No under-fetching:</strong> Get related data in one request</li>
+                        </ul>
+
+                        <h3>GraphQL vs REST</h3>
+                        <div class="comparison-grid">
+                            <div class="comparison-card">
+                                <h4>GraphQL</h4>
+                                <p><strong>Pros:</strong> Flexible queries, single request for complex data, strong typing</p>
+                                <p><strong>Cons:</strong> More complex to implement, caching challenges, potential for expensive queries</p>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4>REST</h4>
+                                <p><strong>Pros:</strong> Simple, cacheable, wide support, mature tooling</p>
+                                <p><strong>Cons:</strong> Over/under-fetching, multiple endpoints, versioning challenges</p>
+                            </div>
+                        </div>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Mobile apps (minimize data transfer)</li>
+                            <li>Complex, interconnected data</li>
+                            <li>Rapid frontend development</li>
+                            <li>Aggregating multiple data sources</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Microservices Section -->
+                <section id="microservices" class="content-section">
+                    <h2>Microservices</h2>
+                    <div class="section-content">
+                        <p>Microservices architecture structures an application as a collection of small, independent services that communicate over networks.</p>
+                        
+                        <h3>Characteristics</h3>
+                        <ul>
+                            <li>Small, focused services (single responsibility)</li>
+                            <li>Independently deployable</li>
+                            <li>Loosely coupled</li>
+                            <li>Organized around business capabilities</li>
+                            <li>Owned by small teams</li>
+                            <li>Technology diversity (polyglot)</li>
+                        </ul>
+
+                        <h3>Microservices vs Monolith</h3>
+                        <div class="comparison-grid">
+                            <div class="comparison-card">
+                                <h4>Microservices</h4>
+                                <p><strong>Pros:</strong> Independent scaling, technology flexibility, fault isolation, faster deployment</p>
+                                <p><strong>Cons:</strong> Distributed system complexity, network latency, data consistency challenges, operational overhead</p>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h4>Monolith</h4>
+                                <p><strong>Pros:</strong> Simpler to develop initially, easier debugging, single deployment, better performance (no network calls)</p>
+                                <p><strong>Cons:</strong> Tight coupling, difficult to scale, technology lock-in, slower deployment</p>
+                            </div>
+                        </div>
+
+                        <h3>Key Patterns</h3>
+                        <ul>
+                            <li><strong>API Gateway:</strong> Single entry point for clients</li>
+                            <li><strong>Service Discovery:</strong> Services find each other dynamically</li>
+                            <li><strong>Circuit Breaker:</strong> Prevent cascading failures</li>
+                            <li><strong>Saga Pattern:</strong> Distributed transactions</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="service-discovery" class="content-section">
+                    <h2>Service Discovery</h2>
+                    <div class="section-content">
+                        <p>Service discovery enables services to find and communicate with each other without hard-coding network locations.</p>
+                        
+                        <h3>Client-Side Discovery</h3>
+                        <p>Client queries a service registry and selects an available instance</p>
+                        <div class="flow-diagram">
+                            <div class="flow-step">1. Service registers with registry</div>
+                            <div class="flow-step">2. Client queries registry</div>
+                            <div class="flow-step">3. Client calls service directly</div>
+                        </div>
+                        <p><strong>Examples:</strong> Netflix Eureka, Consul</p>
+
+                        <h3>Server-Side Discovery</h3>
+                        <p>Client makes request to load balancer, which queries registry</p>
+                        <div class="flow-diagram">
+                            <div class="flow-step">1. Service registers with registry</div>
+                            <div class="flow-step">2. Client calls load balancer</div>
+                            <div class="flow-step">3. Load balancer queries registry</div>
+                            <div class="flow-step">4. Load balancer forwards to service</div>
+                        </div>
+                        <p><strong>Examples:</strong> Kubernetes Services, AWS ELB</p>
+
+                        <h3>Health Checks</h3>
+                        <p>Services periodically report health to registry</p>
+                        <ul>
+                            <li>Heartbeat mechanism</li>
+                            <li>Remove unhealthy instances</li>
+                            <li>Automatic failover</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Design Patterns Section -->
+                <section id="strangler-fig" class="content-section">
+                    <h2>Strangler Fig Pattern</h2>
+                    <div class="section-content">
+                        <p>Gradually migrate a legacy system by incrementally replacing specific pieces of functionality with new services.</p>
+                        
+                        <h3>How It Works</h3>
+                        <div class="flow-diagram">
+                            <div class="flow-step">1. Create facade/proxy in front of legacy system</div>
+                            <div class="flow-step">2. Implement new functionality in new service</div>
+                            <div class="flow-step">3. Route new requests to new service</div>
+                            <div class="flow-step">4. Gradually replace all functionality</div>
+                            <div class="flow-step">5. Retire legacy system</div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Incremental migration reduces risk</li>
+                            <li>Can roll back individual pieces</li>
+                            <li>Business continues operating during migration</li>
+                            <li>Learn and adapt as you go</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="sidecar" class="content-section">
+                    <h2>Sidecar Pattern</h2>
+                    <div class="section-content">
+                        <p>Deploy helper components alongside your main application to provide supporting features without modifying the application.</p>
+                        
+                        <h3>Common Sidecar Uses</h3>
+                        <ul>
+                            <li><strong>Logging:</strong> Collect and forward logs</li>
+                            <li><strong>Monitoring:</strong> Collect metrics</li>
+                            <li><strong>Configuration:</strong> Dynamic config updates</li>
+                            <li><strong>Networking:</strong> Service mesh proxy (Envoy, Linkerd)</li>
+                            <li><strong>Security:</strong> Authentication, encryption</li>
+                        </ul>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Separation of concerns</li>
+                            <li>Reusable across services</li>
+                            <li>Language-agnostic</li>
+                            <li>Independent deployment and scaling</li>
+                        </ul>
+
+                        <h3>Example: Service Mesh</h3>
+                        <p>Each service has a sidecar proxy that handles all network communication, providing features like load balancing, retries, circuit breaking, and observability.</p>
+                    </div>
+                </section>
+
+                <section id="cqrs" class="content-section">
+                    <h2>CQRS (Command Query Responsibility Segregation)</h2>
+                    <div class="section-content">
+                        <p>CQRS separates read and write operations into different models, optimizing each for its specific use case.</p>
+                        
+                        <h3>Architecture</h3>
+                        <div class="cqrs-diagram">
+                            <div class="cqrs-side">
+                                <h4>Command Side (Write)</h4>
+                                <p>Handles create, update, delete operations</p>
+                                <p>Optimized for writes and business logic</p>
+                                <p>Write database (normalized)</p>
+                            </div>
+
+                            <div class="cqrs-side">
+                                <h4>Query Side (Read)</h4>
+                                <p>Handles read operations</p>
+                                <p>Optimized for queries and views</p>
+                                <p>Read database (denormalized)</p>
+                            </div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Independent scaling of reads and writes</li>
+                            <li>Optimized data models for each operation</li>
+                            <li>Simplified queries (no complex joins)</li>
+                            <li>Better performance</li>
+                        </ul>
+
+                        <h3>Challenges</h3>
+                        <ul>
+                            <li>Increased complexity</li>
+                            <li>Eventual consistency between read and write models</li>
+                            <li>Synchronization overhead</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="event-sourcing" class="content-section">
+                    <h2>Event Sourcing</h2>
+                    <div class="section-content">
+                        <p>Store all changes to application state as a sequence of events, rather than just the current state.</p>
+                        
+                        <h3>How It Works</h3>
+                        <div class="flow-diagram">
+                            <div class="flow-step">1. Command triggers event</div>
+                            <div class="flow-step">2. Event stored in event store</div>
+                            <div class="flow-step">3. Event applied to aggregate</div>
+                            <div class="flow-step">4. State updated</div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li><strong>Complete audit trail:</strong> Every change is recorded</li>
+                            <li><strong>Time travel:</strong> Reconstruct state at any point in time</li>
+                            <li><strong>Event replay:</strong> Rebuild state or create new projections</li>
+                            <li><strong>Debugging:</strong> Understand how state was reached</li>
+                        </ul>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Financial systems (transaction history)</li>
+                            <li>Audit requirements</li>
+                            <li>Complex business domains</li>
+                            <li>Systems requiring temporal queries</li>
+                        </ul>
+
+                        <h3>Challenges</h3>
+                        <ul>
+                            <li>Event store can grow large</li>
+                            <li>Eventual consistency</li>
+                            <li>Event versioning and schema evolution</li>
+                            <li>Query complexity</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="saga" class="content-section">
+                    <h2>Saga Pattern</h2>
+                    <div class="section-content">
+                        <p>Manage distributed transactions across multiple services by breaking them into a sequence of local transactions.</p>
+                        
+                        <h3>Choreography-Based Saga</h3>
+                        <p>Each service produces and listens to events, coordinating the saga through event chains</p>
+                        <div class="flow-diagram">
+                            <div class="flow-step">Service A → Event → Service B → Event → Service C</div>
+                        </div>
+                        <p><strong>Pros:</strong> Decentralized, simple for simple workflows</p>
+                        <p><strong>Cons:</strong> Hard to understand complex flows, tight coupling through events</p>
+
+                        <h3>Orchestration-Based Saga</h3>
+                        <p>Central orchestrator tells each service what to do</p>
+                        <div class="flow-diagram">
+                            <div class="flow-step">Orchestrator → Service A</div>
+                            <div class="flow-step">Orchestrator → Service B</div>
+                            <div class="flow-step">Orchestrator → Service C</div>
+                        </div>
+                        <p><strong>Pros:</strong> Centralized logic, easier to understand and test</p>
+                        <p><strong>Cons:</strong> Orchestrator can become complex, single point of failure</p>
+
+                        <h3>Compensating Transactions</h3>
+                        <p>If a step fails, execute compensating transactions to undo previous steps</p>
+                        <ul>
+                            <li>Order created → Cancel order</li>
+                            <li>Payment processed → Refund payment</li>
+                            <li>Inventory reserved → Release inventory</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Reliability Patterns Section -->
+                <section id="circuit-breaker" class="content-section">
+                    <h2>Circuit Breaker</h2>
+                    <div class="section-content">
+                        <p>Prevent cascading failures by stopping requests to a failing service and allowing it time to recover.</p>
+                        
+                        <h3>Circuit Breaker States</h3>
+                        <div class="state-diagram">
+                            <div class="state-card">
+                                <h4>Closed (Normal)</h4>
+                                <p>Requests pass through normally</p>
+                                <p>Count failures</p>
+                            </div>
+
+                            <div class="state-card">
+                                <h4>Open (Failing)</h4>
+                                <p>Requests fail immediately</p>
+                                <p>No calls to service</p>
+                                <p>Wait for timeout</p>
+                            </div>
+
+                            <div class="state-card">
+                                <h4>Half-Open (Testing)</h4>
+                                <p>Allow limited requests</p>
+                                <p>Test if service recovered</p>
+                                <p>Close if success, Open if fail</p>
+                            </div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Prevents resource exhaustion</li>
+                            <li>Fails fast instead of waiting</li>
+                            <li>Gives failing service time to recover</li>
+                            <li>Provides fallback behavior</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="bulkhead" class="content-section">
+                    <h2>Bulkhead Pattern</h2>
+                    <div class="section-content">
+                        <p>Isolate resources for different parts of the system to prevent failures in one area from affecting others.</p>
+                        
+                        <h3>Implementation Strategies</h3>
+                        <div class="bulkhead-strategies">
+                            <div class="strategy-card">
+                                <h4>Thread Pool Isolation</h4>
+                                <p>Separate thread pools for different services</p>
+                                <p>If one service's pool is exhausted, others continue working</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>Connection Pool Isolation</h4>
+                                <p>Separate database connection pools</p>
+                                <p>Prevents one service from consuming all connections</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>Service Instance Isolation</h4>
+                                <p>Deploy separate instances for critical vs non-critical workloads</p>
+                                <p>Ensures critical services always have resources</p>
+                            </div>
+                        </div>
+
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Fault isolation</li>
+                            <li>Prevents resource starvation</li>
+                            <li>Protects critical functionality</li>
+                            <li>Easier to identify bottlenecks</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="retry" class="content-section">
+                    <h2>Retry Pattern</h2>
+                    <div class="section-content">
+                        <p>Automatically retry failed operations, typically with exponential backoff and jitter.</p>
+                        
+                        <h3>Retry Strategies</h3>
+                        <div class="retry-strategies">
+                            <div class="strategy-card">
+                                <h4>Fixed Delay</h4>
+                                <p>Wait same amount between retries</p>
+                                <p>Simple but can overwhelm recovering service</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>Exponential Backoff</h4>
+                                <p>Double wait time after each retry</p>
+                                <p>1s, 2s, 4s, 8s, 16s...</p>
+                                <p>Gives service more time to recover</p>
+                            </div>
+
+                            <div class="strategy-card">
+                                <h4>Exponential Backoff + Jitter</h4>
+                                <p>Add randomness to backoff</p>
+                                <p>Prevents thundering herd problem</p>
+                                <p>Best practice for distributed systems</p>
+                            </div>
+                        </div>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Set maximum retry attempts</li>
+                            <li>Only retry transient failures (network, timeout)</li>
+                            <li>Don't retry client errors (4xx)</li>
+                            <li>Use idempotency to handle duplicate requests</li>
+                            <li>Log retry attempts for monitoring</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="health-monitoring" class="content-section">
+                    <h2>Health Monitoring</h2>
+                    <div class="section-content">
+                        <p>Continuously check the health and availability of services to detect and respond to failures quickly.</p>
+                        
+                        <h3>Health Check Types</h3>
+                        <div class="healthcheck-types">
+                            <div class="healthcheck-card">
+                                <h4>Liveness Check</h4>
+                                <p>Is the service running?</p>
+                                <p>Simple ping or basic endpoint</p>
+                                <p>Used by orchestrators to restart failed services</p>
+                            </div>
+
+                            <div class="healthcheck-card">
+                                <h4>Readiness Check</h4>
+                                <p>Is the service ready to handle requests?</p>
+                                <p>Check dependencies (DB, cache, etc.)</p>
+                                <p>Used by load balancers to route traffic</p>
+                            </div>
+
+                            <div class="healthcheck-card">
+                                <h4>Deep Health Check</h4>
+                                <p>Comprehensive system check</p>
+                                <p>Test all critical dependencies</p>
+                                <p>May be expensive, run less frequently</p>
+                            </div>
+                        </div>
+
+                        <h3>Health Check Endpoints</h3>
+                        <p><strong>GET /health/live</strong> - Liveness check</p>
+                        <p><strong>GET /health/ready</strong> - Readiness check</p>
+                        <p><strong>GET /health</strong> - Detailed health status</p>
+
+                        <h3>Response Format</h3>
+                        <ul>
+                            <li>HTTP 200 - Healthy</li>
+                            <li>HTTP 503 - Unhealthy</li>
+                            <li>Include details: status, dependencies, version</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Monitoring Section -->
+                <section id="monitoring" class="content-section">
+                    <h2>Monitoring</h2>
+                    <div class="section-content">
+                        <p>Monitoring provides visibility into system behavior, performance, and health through metrics, logs, and traces.</p>
+                        
+                        <h3>The Three Pillars of Observability</h3>
+                        <div class="pillars-grid">
+                            <div class="pillar-card">
+                                <h4>Metrics</h4>
+                                <p>Numerical measurements over time</p>
+                                <ul>
+                                    <li>CPU, memory, disk usage</li>
+                                    <li>Request rate, latency, error rate</li>
+                                    <li>Business metrics (orders, revenue)</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Prometheus, Grafana, Datadog</p>
+                            </div>
+
+                            <div class="pillar-card">
+                                <h4>Logs</h4>
+                                <p>Timestamped records of events</p>
+                                <ul>
+                                    <li>Application logs</li>
+                                    <li>Access logs</li>
+                                    <li>Error logs</li>
+                                </ul>
+                                <p><strong>Tools:</strong> ELK Stack, Splunk, Loki</p>
+                            </div>
+
+                            <div class="pillar-card">
+                                <h4>Traces</h4>
+                                <p>Request flow through distributed system</p>
+                                <ul>
+                                    <li>Distributed tracing</li>
+                                    <li>Service dependencies</li>
+                                    <li>Performance bottlenecks</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Jaeger, Zipkin, OpenTelemetry</p>
+                            </div>
+                        </div>
+
+                        <h3>Key Metrics to Monitor</h3>
+                        <ul>
+                            <li><strong>Latency:</strong> Response time (p50, p95, p99)</li>
+                            <li><strong>Traffic:</strong> Requests per second</li>
+                            <li><strong>Errors:</strong> Error rate, error types</li>
+                            <li><strong>Saturation:</strong> Resource utilization</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="instrumentation" class="content-section">
+                    <h2>Instrumentation</h2>
+                    <div class="section-content">
+                        <p>Instrumentation is the process of adding code to collect metrics, logs, and traces from your application.</p>
+                        
+                        <h3>What to Instrument</h3>
+                        <div class="instrumentation-areas">
+                            <div class="area-card">
+                                <h4>Application Metrics</h4>
+                                <ul>
+                                    <li>Request count and rate</li>
+                                    <li>Response time (latency)</li>
+                                    <li>Error count and rate</li>
+                                    <li>Active connections</li>
+                                </ul>
+                            </div>
+
+                            <div class="area-card">
+                                <h4>Business Metrics</h4>
+                                <ul>
+                                    <li>User signups</li>
+                                    <li>Orders placed</li>
+                                    <li>Revenue</li>
+                                    <li>Feature usage</li>
+                                </ul>
+                            </div>
+
+                            <div class="area-card">
+                                <h4>Infrastructure Metrics</h4>
+                                <ul>
+                                    <li>CPU, memory, disk</li>
+                                    <li>Network I/O</li>
+                                    <li>Database connections</li>
+                                    <li>Cache hit rate</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Instrumentation Best Practices</h3>
+                        <ul>
+                            <li>Use structured logging (JSON)</li>
+                            <li>Add correlation IDs to trace requests</li>
+                            <li>Include context (user ID, request ID, etc.)</li>
+                            <li>Use appropriate log levels</li>
+                            <li>Avoid logging sensitive data</li>
+                            <li>Sample high-volume traces</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="visualization" class="content-section">
+                    <h2>Visualization & Alerts</h2>
+                    <div class="section-content">
+                        <p>Visualizations and alerts help teams understand system behavior and respond quickly to issues.</p>
+                        
+                        <h3>Dashboard Types</h3>
+                        <div class="dashboard-types">
+                            <div class="dashboard-card">
+                                <h4>Operational Dashboard</h4>
+                                <p>Real-time system health</p>
+                                <ul>
+                                    <li>Current error rates</li>
+                                    <li>Active alerts</li>
+                                    <li>Resource utilization</li>
+                                    <li>Service status</li>
+                                </ul>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h4>Analytical Dashboard</h4>
+                                <p>Historical trends and patterns</p>
+                                <ul>
+                                    <li>Performance over time</li>
+                                    <li>Capacity planning</li>
+                                    <li>Cost analysis</li>
+                                    <li>Usage patterns</li>
+                                </ul>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h4>Business Dashboard</h4>
+                                <p>Business metrics and KPIs</p>
+                                <ul>
+                                    <li>User growth</li>
+                                    <li>Revenue metrics</li>
+                                    <li>Conversion rates</li>
+                                    <li>Feature adoption</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Alerting Best Practices</h3>
+                        <ul>
+                            <li><strong>Alert on symptoms, not causes:</strong> Alert on user impact</li>
+                            <li><strong>Reduce noise:</strong> Avoid alert fatigue</li>
+                            <li><strong>Actionable alerts:</strong> Include context and next steps</li>
+                            <li><strong>Severity levels:</strong> Critical, warning, info</li>
+                            <li><strong>Alert routing:</strong> Right team, right channel</li>
+                        </ul>
+
+                        <h3>SLOs and SLIs</h3>
+                        <p><strong>SLI (Service Level Indicator):</strong> Metric that measures service quality (e.g., latency, error rate)</p>
+                        <p><strong>SLO (Service Level Objective):</strong> Target value for SLI (e.g., 99.9% availability)</p>
+                        <p><strong>SLA (Service Level Agreement):</strong> Contract with consequences if SLO not met</p>
+                    </div>
+                </section>
+
             </main>
         </div>
     </div>

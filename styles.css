@@ -1958,3 +1958,660 @@ header h1 {
 .content::-webkit-scrollbar-thumb:hover {
     background: var(--text-secondary);
 }
+
+/* New Section Styles for Database, NoSQL, Caching, etc. */
+
+/* Comparison Card Styles */
+.comparison-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.comparison-card h3 {
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+}
+
+.comparison-card h4 {
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.75rem 0;
+    font-size: 1.125rem;
+}
+
+/* Replication Styles */
+.replication-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.replication-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--success-color);
+}
+
+.replication-card h3 {
+    color: var(--success-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Flow Diagram Styles */
+.flow-diagram {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.flow-step {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    border-left: 3px solid var(--primary-color);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9375rem;
+    animation: flowPulse 2s ease-in-out infinite;
+}
+
+@keyframes flowPulse {
+    0%, 100% {
+        border-left-color: var(--primary-color);
+    }
+    50% {
+        border-left-color: var(--secondary-color);
+    }
+}
+
+/* Sharding Strategies */
+.sharding-strategies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.strategy-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+.strategy-card:hover {
+    transform: translateY(-4px);
+}
+
+.strategy-card h4 {
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Federation Styles */
+.federation-example {
+    margin: 2rem 0;
+}
+
+.federation-diagram {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.fed-db {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color);
+    font-weight: 600;
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Normalization Comparison */
+.norm-vs-denorm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* SQL Tuning Techniques */
+.tuning-techniques {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.technique-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--success-color);
+}
+
+.technique-card h4 {
+    color: var(--success-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Cache Levels */
+.cache-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.cache-level {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    animation: slideInRight 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.cache-level:nth-child(1) { animation-delay: 0.1s; }
+.cache-level:nth-child(2) { animation-delay: 0.2s; }
+.cache-level:nth-child(3) { animation-delay: 0.3s; }
+.cache-level:nth-child(4) { animation-delay: 0.4s; }
+.cache-level:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Strategy Grid */
+.strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Eviction Policies */
+.eviction-policies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.policy-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--warning-color);
+    text-align: center;
+}
+
+.policy-card h4 {
+    color: var(--warning-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Queue Diagram */
+.queue-diagram {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+}
+
+.queue-flow {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border: 2px solid var(--primary-color);
+    animation: queuePulse 2s ease-in-out infinite;
+}
+
+@keyframes queuePulse {
+    0%, 100% {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+    }
+    50% {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    }
+}
+
+/* Pattern Grid */
+.pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.pattern-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--accent-color);
+}
+
+.pattern-card h4 {
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Component Grid */
+.component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.component-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--primary-color);
+}
+
+.component-card h4 {
+    color: var(--primary-color);
+    margin: 0 0 0.75rem 0;
+}
+
+/* Back Pressure Strategies */
+.backpressure-strategies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* HTTP Method Grid */
+.method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.method-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 3px solid var(--success-color);
+}
+
+.method-card h4 {
+    color: var(--success-color);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+}
+
+/* API Examples */
+.api-examples {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.api-examples p {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 0.25rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+/* CQRS Diagram */
+.cqrs-diagram {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.cqrs-side {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--primary-color);
+}
+
+.cqrs-side h4 {
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
+}
+
+/* State Diagram for Circuit Breaker */
+.state-diagram {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.state-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 3px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.state-card:nth-child(1) {
+    border-color: var(--success-color);
+    animation: statePulse 3s ease-in-out infinite;
+}
+
+.state-card:nth-child(2) {
+    border-color: var(--danger-color);
+    animation: statePulse 3s ease-in-out infinite 1s;
+}
+
+.state-card:nth-child(3) {
+    border-color: var(--warning-color);
+    animation: statePulse 3s ease-in-out infinite 2s;
+}
+
+@keyframes statePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: var(--shadow-md);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-xl);
+    }
+}
+
+.state-card h4 {
+    margin: 0 0 1rem 0;
+}
+
+/* Bulkhead Strategies */
+.bulkhead-strategies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* Retry Strategies */
+.retry-strategies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* Health Check Types */
+.healthcheck-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.healthcheck-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--success-color);
+}
+
+.healthcheck-card h4 {
+    color: var(--success-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Monitoring Pillars */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.pillar-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--primary-color);
+}
+
+.pillar-card h4 {
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+/* Instrumentation Areas */
+.instrumentation-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.area-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--accent-color);
+}
+
+.area-card h4 {
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Dashboard Types */
+.dashboard-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--secondary-color);
+}
+
+.dashboard-card h4 {
+    color: var(--secondary-color);
+    margin: 0 0 1rem 0;
+}
+
+/* Content Section Styles */
+.content-section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 140px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.section-content {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.section-content > p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.section-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 2rem 0 1rem 0;
+}
+
+.section-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.75rem 0;
+}
+
+.section-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.section-content ul li {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    color: var(--text-secondary);
+}
+
+.section-content ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .comparison-grid,
+    .replication-types,
+    .sharding-strategies,
+    .federation-diagram,
+    .norm-vs-denorm,
+    .tuning-techniques,
+    .strategy-grid,
+    .eviction-policies,
+    .pattern-grid,
+    .component-grid,
+    .backpressure-strategies,
+    .method-grid,
+    .cqrs-diagram,
+    .state-diagram,
+    .bulkhead-strategies,
+    .retry-strategies,
+    .healthcheck-types,
+    .pillars-grid,
+    .instrumentation-areas,
+    .dashboard-types {
+        grid-template-columns: 1fr;
+    }
+}
