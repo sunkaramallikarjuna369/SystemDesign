@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design Guide - Complete Reference</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>System Design Guide</h1>
+                <p class="subtitle">Everything you need to know about designing large-scale systems</p>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <nav class="sidebar" id="sidebar">
+                <div class="sidebar-content">
+                    <h3>Topics</h3>
+                    <div class="nav-section">
+                        <h4>Introduction</h4>
+                        <a href="#what-is-system-design" class="nav-link">What is System Design?</a>
+                        <a href="#how-to-approach" class="nav-link">How to Approach System Design</a>
+                    </div>
+                    
+                    <div class="nav-section">
+                        <h4>Core Concepts</h4>
+                        <a href="#performance-vs-scalability" class="nav-link">Performance vs Scalability</a>
+                        <a href="#latency-vs-throughput" class="nav-link">Latency vs Throughput</a>
+                        <a href="#availability-vs-consistency" class="nav-link">Availability vs Consistency</a>
+                        <a href="#cap-theorem" class="nav-link">CAP Theorem</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Consistency Patterns</h4>
+                        <a href="#weak-consistency" class="nav-link">Weak Consistency</a>
+                        <a href="#eventual-consistency" class="nav-link">Eventual Consistency</a>
+                        <a href="#strong-consistency" class="nav-link">Strong Consistency</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Availability Patterns</h4>
+                        <a href="#fail-over" class="nav-link">Fail-over</a>
+                        <a href="#replication" class="nav-link">Replication</a>
+                        <a href="#availability-numbers" class="nav-link">Availability in Numbers</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>DNS & CDN</h4>
+                        <a href="#domain-name-system" class="nav-link">Domain Name System</a>
+                        <a href="#content-delivery-network" class="nav-link">Content Delivery Networks</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Load Balancing</h4>
+                        <a href="#load-balancers" class="nav-link">Load Balancers</a>
+                        <a href="#load-balancing-algorithms" class="nav-link">Load Balancing Algorithms</a>
+                        <a href="#layer-4-vs-layer-7" class="nav-link">Layer 4 vs Layer 7</a>
+                        <a href="#horizontal-scaling" class="nav-link">Horizontal Scaling</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Databases</h4>
+                        <a href="#sql-vs-nosql" class="nav-link">SQL vs NoSQL</a>
+                        <a href="#database-replication" class="nav-link">Database Replication</a>
+                        <a href="#database-sharding" class="nav-link">Database Sharding</a>
+                        <a href="#database-federation" class="nav-link">Database Federation</a>
+                        <a href="#denormalization" class="nav-link">Denormalization</a>
+                        <a href="#sql-tuning" class="nav-link">SQL Tuning</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>NoSQL Types</h4>
+                        <a href="#key-value-store" class="nav-link">Key-Value Store</a>
+                        <a href="#document-store" class="nav-link">Document Store</a>
+                        <a href="#wide-column-store" class="nav-link">Wide Column Store</a>
+                        <a href="#graph-database" class="nav-link">Graph Database</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Caching</h4>
+                        <a href="#caching" class="nav-link">Caching Overview</a>
+                        <a href="#cache-strategies" class="nav-link">Cache Strategies</a>
+                        <a href="#cache-types" class="nav-link">Types of Caching</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Asynchronism</h4>
+                        <a href="#message-queues" class="nav-link">Message Queues</a>
+                        <a href="#task-queues" class="nav-link">Task Queues</a>
+                        <a href="#back-pressure" class="nav-link">Back Pressure</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Communication</h4>
+                        <a href="#http" class="nav-link">HTTP</a>
+                        <a href="#tcp" class="nav-link">TCP</a>
+                        <a href="#udp" class="nav-link">UDP</a>
+                        <a href="#rpc" class="nav-link">RPC</a>
+                        <a href="#rest" class="nav-link">REST</a>
+                        <a href="#graphql" class="nav-link">GraphQL</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Microservices</h4>
+                        <a href="#microservices" class="nav-link">Microservices Architecture</a>
+                        <a href="#service-discovery" class="nav-link">Service Discovery</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Design Patterns</h4>
+                        <a href="#strangler-fig" class="nav-link">Strangler Fig</a>
+                        <a href="#sidecar" class="nav-link">Sidecar</a>
+                        <a href="#cqrs" class="nav-link">CQRS</a>
+                        <a href="#event-sourcing" class="nav-link">Event Sourcing</a>
+                        <a href="#saga" class="nav-link">Saga Pattern</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Reliability Patterns</h4>
+                        <a href="#circuit-breaker" class="nav-link">Circuit Breaker</a>
+                        <a href="#bulkhead" class="nav-link">Bulkhead</a>
+                        <a href="#retry" class="nav-link">Retry Pattern</a>
+                        <a href="#health-monitoring" class="nav-link">Health Monitoring</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Monitoring</h4>
+                        <a href="#monitoring" class="nav-link">Monitoring Overview</a>
+                        <a href="#instrumentation" class="nav-link">Instrumentation</a>
+                        <a href="#visualization" class="nav-link">Visualization & Alerts</a>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="content" id="content">
+                <section id="what-is-system-design" class="topic-section">
+                    <h2>What is System Design?</h2>
+                    <div class="content-block">
+                        <p>System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements. It involves making high-level decisions about how different parts of a system will work together to achieve desired functionality, performance, scalability, and reliability.</p>
+                        
+                        <div class="key-points">
+                            <h3>Key Aspects of System Design:</h3>
+                            <ul>
+                                <li><strong>Scalability:</strong> Ability to handle growing amounts of work</li>
+                                <li><strong>Reliability:</strong> System continues to work correctly even when failures occur</li>
+                                <li><strong>Availability:</strong> System is operational and accessible when needed</li>
+                                <li><strong>Efficiency:</strong> System uses resources optimally</li>
+                                <li><strong>Maintainability:</strong> System can be easily modified and extended</li>
+                            </ul>
+                        </div>
+
+                        <div class="visualization-container">
+                            <div class="system-design-overview">
+                                <div class="component-box" style="animation-delay: 0s;">
+                                    <div class="icon">👥</div>
+                                    <div class="label">Users</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="component-box" style="animation-delay: 0.2s;">
+                                    <div class="icon">🌐</div>
+                                    <div class="label">Load Balancer</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="component-box" style="animation-delay: 0.4s;">
+                                    <div class="icon">⚙️</div>
+                                    <div class="label">Application Servers</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="component-box" style="animation-delay: 0.6s;">
+                                    <div class="icon">💾</div>
+                                    <div class="label">Database</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="how-to-approach" class="topic-section">
+                    <h2>How to Approach System Design</h2>
+                    <div class="content-block">
+                        <p>A systematic approach to system design helps ensure all important aspects are considered. Follow these steps when designing a system:</p>
+                        
+                        <div class="steps-container">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <h3>Understand Requirements</h3>
+                                <p>Clarify functional and non-functional requirements. Ask about scale, performance expectations, and constraints.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <h3>Estimate Scale</h3>
+                                <p>Calculate storage needs, bandwidth, queries per second, and other metrics to understand the system's scale.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <h3>Define Data Model</h3>
+                                <p>Design the database schema and decide on the type of database (SQL vs NoSQL) based on requirements.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">4</div>
+                                <h3>High-Level Design</h3>
+                                <p>Create a high-level architecture showing major components and how they interact.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">5</div>
+                                <h3>Detailed Design</h3>
+                                <p>Dive deeper into specific components, algorithms, and data structures.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">6</div>
+                                <h3>Identify Bottlenecks</h3>
+                                <p>Find potential issues and discuss trade-offs and solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="performance-vs-scalability" class="topic-section">
+                    <h2>Performance vs Scalability</h2>
+                    <div class="content-block">
+                        <p>Performance and scalability are related but distinct concepts in system design. Understanding the difference is crucial for building effective systems.</p>
+                        
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h3>Performance</h3>
+                                <p>Performance refers to how fast a system responds to a single request. A system has good performance if it responds quickly to individual requests.</p>
+                                <div class="metric-box">
+                                    <div class="metric-label">Measured by:</div>
+                                    <ul>
+                                        <li>Response time</li>
+                                        <li>Latency</li>
+                                        <li>Throughput</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="comparison-item">
+                                <h3>Scalability</h3>
+                                <p>Scalability refers to a system's ability to handle increased load. A system is scalable if it can maintain performance as load increases.</p>
+                                <div class="metric-box">
+                                    <div class="metric-label">Measured by:</div>
+                                    <ul>
+                                        <li>Concurrent users</li>
+                                        <li>Requests per second</li>
+                                        <li>Data volume</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="animated-diagram">
+                            <h3>Scalability Visualization</h3>
+                            <div class="scalability-demo">
+                                <div class="server-row">
+                                    <div class="server-label">Single Server:</div>
+                                    <div class="server-box pulse">Server 1</div>
+                                    <div class="load-indicator">Load: 100%</div>
+                                </div>
+                                <div class="server-row">
+                                    <div class="server-label">Scaled (3 Servers):</div>
+                                    <div class="server-box pulse" style="animation-delay: 0s;">Server 1</div>
+                                    <div class="server-box pulse" style="animation-delay: 0.3s;">Server 2</div>
+                                    <div class="server-box pulse" style="animation-delay: 0.6s;">Server 3</div>
+                                    <div class="load-indicator">Load: 33% each</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="latency-vs-throughput" class="topic-section">
+                    <h2>Latency vs Throughput</h2>
+                    <div class="content-block">
+                        <p>Latency and throughput are two fundamental metrics for measuring system performance. They often have trade-offs between them.</p>
+                        
+                        <div class="definition-grid">
+                            <div class="definition-card">
+                                <h3>Latency</h3>
+                                <div class="definition-icon">⏱️</div>
+                                <p><strong>Definition:</strong> The time it takes to perform an action or produce a result.</p>
+                                <p><strong>Example:</strong> Time to fetch data from database (50ms)</p>
+                                <div class="code-example">
+                                    <code>Request → [50ms delay] → Response</code>
+                                </div>
+                            </div>
+                            <div class="definition-card">
+                                <h3>Throughput</h3>
+                                <div class="definition-icon">📊</div>
+                                <p><strong>Definition:</strong> The number of operations performed per unit of time.</p>
+                                <p><strong>Example:</strong> Number of requests processed per second (1000 req/s)</p>
+                                <div class="code-example">
+                                    <code>1000 requests / second</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="trade-off-section">
+                            <h3>The Trade-off</h3>
+                            <p>Generally, you can achieve high throughput with low latency, but there are trade-offs:</p>
+                            <ul>
+                                <li>Batching requests increases throughput but may increase latency</li>
+                                <li>Processing requests individually minimizes latency but may reduce throughput</li>
+                                <li>The optimal balance depends on your specific use case</li>
+                            </ul>
+                        </div>
+
+                        <div class="animated-comparison">
+                            <div class="comparison-scenario">
+                                <h4>Low Latency Scenario</h4>
+                                <div class="request-flow">
+                                    <div class="request-item fast">Request 1 → 10ms</div>
+                                    <div class="request-item fast">Request 2 → 10ms</div>
+                                    <div class="request-item fast">Request 3 → 10ms</div>
+                                </div>
+                                <p>Fast individual responses</p>
+                            </div>
+                            <div class="comparison-scenario">
+                                <h4>High Throughput Scenario</h4>
+                                <div class="request-flow">
+                                    <div class="request-batch">Batch [1,2,3,4,5] → 30ms</div>
+                                </div>
+                                <p>More requests processed overall</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="availability-vs-consistency" class="topic-section">
+                    <h2>Availability vs Consistency</h2>
+                    <div class="content-block">
+                        <p>In distributed systems, there's often a trade-off between availability and consistency. Understanding this trade-off is essential for making informed design decisions.</p>
+                        
+                        <div class="concept-grid">
+                            <div class="concept-card">
+                                <h3>Availability</h3>
+                                <p>Every request receives a response, without guarantee that it contains the most recent data.</p>
+                                <div class="example-box">
+                                    <strong>Example:</strong> Social media feed showing slightly outdated posts to ensure the app remains responsive.
+                                </div>
+                            </div>
+                            <div class="concept-card">
+                                <h3>Consistency</h3>
+                                <p>Every read receives the most recent write or an error.</p>
+                                <div class="example-box">
+                                    <strong>Example:</strong> Banking system ensuring account balance is always accurate, even if it means slower responses.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="trade-off-diagram">
+                            <h3>The Spectrum</h3>
+                            <div class="spectrum-bar">
+                                <div class="spectrum-point left">
+                                    <div class="point-marker"></div>
+                                    <div class="point-label">High Availability<br/>Eventual Consistency</div>
+                                    <div class="use-case">Social Media, Caching</div>
+                                </div>
+                                <div class="spectrum-line"></div>
+                                <div class="spectrum-point right">
+                                    <div class="point-marker"></div>
+                                    <div class="point-label">Strong Consistency<br/>Lower Availability</div>
+                                    <div class="use-case">Banking, Transactions</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cap-theorem" class="topic-section">
+                    <h2>CAP Theorem</h2>
+                    <div class="content-block">
+                        <p>The CAP theorem states that a distributed system can only guarantee two out of three properties: Consistency, Availability, and Partition Tolerance.</p>
+                        
+                        <div class="cap-triangle">
+                            <svg viewBox="0 0 400 350" class="cap-svg">
+                                <polygon points="200,50 50,300 350,300" class="triangle-shape" />
+                                
+                                <circle cx="200" cy="50" r="60" class="cap-node consistency-node" />
+                                <text x="200" y="45" class="cap-label">Consistency</text>
+                                <text x="200" y="65" class="cap-sublabel">All nodes see</text>
+                                <text x="200" y="80" class="cap-sublabel">same data</text>
+                                
+                                <circle cx="50" cy="300" r="60" class="cap-node availability-node" />
+                                <text x="50" y="295" class="cap-label">Availability</text>
+                                <text x="50" y="315" class="cap-sublabel">System always</text>
+                                <text x="50" y="330" class="cap-sublabel">responds</text>
+                                
+                                <circle cx="350" cy="300" r="60" class="cap-node partition-node" />
+                                <text x="350" y="295" class="cap-label">Partition</text>
+                                <text x="350" y="310" class="cap-label">Tolerance</text>
+                                <text x="350" y="330" class="cap-sublabel">Works despite</text>
+                                <text x="350" y="345" class="cap-sublabel">network issues</text>
+                                
+                                <text x="125" y="175" class="edge-label">CP Systems</text>
+                                <text x="125" y="190" class="edge-sublabel">(MongoDB, HBase)</text>
+                                
+                                <text x="275" y="175" class="edge-label">AP Systems</text>
+                                <text x="275" y="190" class="edge-sublabel">(Cassandra, DynamoDB)</text>
+                                
+                                <text x="200" y="320" class="edge-label">CA Systems</text>
+                                <text x="200" y="335" class="edge-sublabel">(Traditional RDBMS)</text>
+                            </svg>
+                        </div>
+
+                        <div class="cap-explanation">
+                            <h3>Understanding the Trade-offs</h3>
+                            <div class="trade-off-cards">
+                                <div class="trade-off-card">
+                                    <h4>CP (Consistency + Partition Tolerance)</h4>
+                                    <p>System ensures consistency even during network partitions, but may become unavailable.</p>
+                                    <strong>Examples:</strong> MongoDB, HBase, Redis
+                                </div>
+                                <div class="trade-off-card">
+                                    <h4>AP (Availability + Partition Tolerance)</h4>
+                                    <p>System remains available during network partitions, but may return stale data.</p>
+                                    <strong>Examples:</strong> Cassandra, DynamoDB, CouchDB
+                                </div>
+                                <div class="trade-off-card">
+                                    <h4>CA (Consistency + Availability)</h4>
+                                    <p>System is consistent and available, but cannot handle network partitions.</p>
+                                    <strong>Examples:</strong> Traditional RDBMS (single node)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="weak-consistency" class="topic-section">
+                    <h2>Weak Consistency</h2>
+                    <div class="content-block">
+                        <p>After a write, reads may or may not see it. A best-effort approach is taken. This is commonly seen in systems like memcached and VoIP.</p>
+                        
+                        <div class="consistency-demo">
+                            <h3>How Weak Consistency Works</h3>
+                            <div class="timeline-demo">
+                                <div class="timeline-event">
+                                    <div class="event-time">T0</div>
+                                    <div class="event-action write">Write: X = 10</div>
+                                </div>
+                                <div class="timeline-event">
+                                    <div class="event-time">T1</div>
+                                    <div class="event-action read uncertain">Read: X = ? (may be 10 or old value)</div>
+                                </div>
+                                <div class="timeline-event">
+                                    <div class="event-time">T2</div>
+                                    <div class="event-action read uncertain">Read: X = ? (may be 10 or old value)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="use-cases">
+                            <h3>Use Cases</h3>
+                            <ul>
+                                <li><strong>Real-time Communication:</strong> VoIP, video chat (dropped frames acceptable)</li>
+                                <li><strong>Caching:</strong> Memcached (stale data acceptable for performance)</li>
+                                <li><strong>Gaming:</strong> Multiplayer games (slight inconsistencies acceptable)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="eventual-consistency" class="topic-section">
+                    <h2>Eventual Consistency</h2>
+                    <div class="content-block">
+                        <p>After a write, reads will eventually see it (typically within milliseconds). Data is replicated asynchronously. This is commonly used in DNS and email systems.</p>
+                        
+                        <div class="consistency-demo">
+                            <h3>How Eventual Consistency Works</h3>
+                            <div class="replication-flow">
+                                <div class="node-group">
+                                    <div class="db-node primary">
+                                        <div class="node-label">Primary</div>
+                                        <div class="node-data">X = 10</div>
+                                    </div>
+                                    <div class="write-indicator">Write happens here</div>
+                                </div>
+                                <div class="replication-arrows">
+                                    <div class="arrow-line">→</div>
+                                    <div class="arrow-line">→</div>
+                                    <div class="replication-label">Async replication</div>
+                                </div>
+                                <div class="node-group">
+                                    <div class="db-node replica">
+                                        <div class="node-label">Replica 1</div>
+                                        <div class="node-data syncing">X = 5 → 10</div>
+                                    </div>
+                                    <div class="db-node replica">
+                                        <div class="node-label">Replica 2</div>
+                                        <div class="node-data syncing">X = 5 → 10</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="characteristics">
+                            <h3>Characteristics</h3>
+                            <ul>
+                                <li>High availability and performance</li>
+                                <li>Works well in distributed systems</li>
+                                <li>Temporary inconsistencies are acceptable</li>
+                                <li>Eventually all replicas converge to the same value</li>
+                            </ul>
+                        </div>
+
+                        <div class="use-cases">
+                            <h3>Use Cases</h3>
+                            <ul>
+                                <li><strong>DNS:</strong> Domain name updates propagate gradually</li>
+                                <li><strong>Social Media:</strong> Likes, comments may take time to appear everywhere</li>
+                                <li><strong>E-commerce:</strong> Product inventory counts (approximate is acceptable)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="strong-consistency" class="topic-section">
+                    <h2>Strong Consistency</h2>
+                    <div class="content-block">
+                        <p>After a write, reads will always see it. Data is replicated synchronously. This is used in file systems and RDBMSes where consistency is critical.</p>
+                        
+                        <div class="consistency-demo">
+                            <h3>How Strong Consistency Works</h3>
+                            <div class="sync-replication-flow">
+                                <div class="sync-step">
+                                    <div class="step-label">1. Write Request</div>
+                                    <div class="db-node primary">Primary: X = 10</div>
+                                </div>
+                                <div class="sync-arrow">↓ Synchronous replication</div>
+                                <div class="sync-step">
+                                    <div class="step-label">2. Wait for Acknowledgment</div>
+                                    <div class="replica-group">
+                                        <div class="db-node replica">Replica 1: X = 10 ✓</div>
+                                        <div class="db-node replica">Replica 2: X = 10 ✓</div>
+                                    </div>
+                                </div>
+                                <div class="sync-arrow">↓ All replicas updated</div>
+                                <div class="sync-step">
+                                    <div class="step-label">3. Confirm Write</div>
+                                    <div class="success-indicator">Write confirmed - All reads will see X = 10</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="characteristics">
+                            <h3>Characteristics</h3>
+                            <ul>
+                                <li>Guaranteed consistency across all nodes</li>
+                                <li>Higher latency due to synchronous replication</li>
+                                <li>May sacrifice availability during network issues</li>
+                                <li>Simpler to reason about for developers</li>
+                            </ul>
+                        </div>
+
+                        <div class="use-cases">
+                            <h3>Use Cases</h3>
+                            <ul>
+                                <li><strong>Banking:</strong> Account balances must be accurate</li>
+                                <li><strong>Inventory Management:</strong> Stock levels must be precise</li>
+                                <li><strong>Booking Systems:</strong> Prevent double-booking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="fail-over" class="topic-section">
+                    <h2>Fail-over</h2>
+                    <div class="content-block">
+                        <p>Fail-over is a backup operational mode where the functions of a system component are assumed by secondary system components when the primary becomes unavailable.</p>
+                        
+                        <div class="failover-types">
+                            <div class="failover-type">
+                                <h3>Active-Passive (Master-Slave)</h3>
+                                <div class="failover-diagram">
+                                    <div class="server-state">
+                                        <div class="server active">
+                                            <div class="server-icon">🟢</div>
+                                            <div class="server-label">Active Server</div>
+                                            <div class="server-status">Handling requests</div>
+                                        </div>
+                                        <div class="heartbeat-line">💓 Heartbeat</div>
+                                        <div class="server passive">
+                                            <div class="server-icon">🟡</div>
+                                            <div class="server-label">Passive Server</div>
+                                            <div class="server-status">Standby mode</div>
+                                        </div>
+                                    </div>
+                                    <div class="failure-scenario">
+                                        <div class="scenario-label">On Failure:</div>
+                                        <div class="server-state">
+                                            <div class="server failed">
+                                                <div class="server-icon">🔴</div>
+                                                <div class="server-label">Failed Server</div>
+                                            </div>
+                                            <div class="failover-arrow">→ Failover →</div>
+                                            <div class="server active">
+                                                <div class="server-icon">🟢</div>
+                                                <div class="server-label">Now Active</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pros-cons">
+                                    <div class="pros">
+                                        <strong>Pros:</strong>
+                                        <ul>
+                                            <li>Simple to implement</li>
+                                            <li>Clear separation of roles</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons">
+                                        <strong>Cons:</strong>
+                                        <ul>
+                                            <li>Passive server is idle (wasted resources)</li>
+                                            <li>Failover time can be significant</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="failover-type">
+                                <h3>Active-Active (Master-Master)</h3>
+                                <div class="failover-diagram">
+                                    <div class="server-state">
+                                        <div class="server active">
+                                            <div class="server-icon">🟢</div>
+                                            <div class="server-label">Active Server 1</div>
+                                            <div class="server-status">Handling requests</div>
+                                        </div>
+                                        <div class="bidirectional-sync">⟷ Bidirectional Sync</div>
+                                        <div class="server active">
+                                            <div class="server-icon">🟢</div>
+                                            <div class="server-label">Active Server 2</div>
+                                            <div class="server-status">Handling requests</div>
+                                        </div>
+                                    </div>
+                                    <div class="failure-scenario">
+                                        <div class="scenario-label">On Failure:</div>
+                                        <div class="server-state">
+                                            <div class="server failed">
+                                                <div class="server-icon">🔴</div>
+                                                <div class="server-label">Failed Server</div>
+                                            </div>
+                                            <div class="failover-arrow">→ Traffic redirected →</div>
+                                            <div class="server active">
+                                                <div class="server-icon">🟢</div>
+                                                <div class="server-label">Continues serving</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pros-cons">
+                                    <div class="pros">
+                                        <strong>Pros:</strong>
+                                        <ul>
+                                            <li>Better resource utilization</li>
+                                            <li>No failover delay</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons">
+                                        <strong>Cons:</strong>
+                                        <ul>
+                                            <li>More complex to implement</li>
+                                            <li>Potential consistency issues</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="replication" class="topic-section">
+                    <h2>Replication</h2>
+                    <div class="content-block">
+                        <p>Replication involves sharing information to ensure consistency between redundant resources to improve reliability, fault-tolerance, or accessibility.</p>
+                        
+                        <div class="replication-types">
+                            <div class="replication-type">
+                                <h3>Master-Slave Replication</h3>
+                                <div class="replication-diagram">
+                                    <div class="master-node">
+                                        <div class="node-icon">👑</div>
+                                        <div class="node-label">Master</div>
+                                        <div class="node-operations">Reads & Writes</div>
+                                    </div>
+                                    <div class="replication-flow">
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-label">Replication</div>
+                                        <div class="flow-arrow">↓</div>
+                                    </div>
+                                    <div class="slave-nodes">
+                                        <div class="slave-node">
+                                            <div class="node-icon">📖</div>
+                                            <div class="node-label">Slave 1</div>
+                                            <div class="node-operations">Reads only</div>
+                                        </div>
+                                        <div class="slave-node">
+                                            <div class="node-icon">📖</div>
+                                            <div class="node-label">Slave 2</div>
+                                            <div class="node-operations">Reads only</div>
+                                        </div>
+                                        <div class="slave-node">
+                                            <div class="node-icon">📖</div>
+                                            <div class="node-label">Slave 3</div>
+                                            <div class="node-operations">Reads only</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="advantages">
+                                    <strong>Advantages:</strong>
+                                    <ul>
+                                        <li>Scales read operations</li>
+                                        <li>Backups without affecting master</li>
+                                        <li>Simple to understand and implement</li>
+                                    </ul>
+                                </div>
+                                <div class="disadvantages">
+                                    <strong>Disadvantages:</strong>
+                                    <ul>
+                                        <li>Single point of failure (master)</li>
+                                        <li>Replication lag can cause inconsistency</li>
+                                        <li>Write operations don't scale</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="replication-type">
+                                <h3>Master-Master Replication</h3>
+                                <div class="replication-diagram">
+                                    <div class="master-nodes">
+                                        <div class="master-node">
+                                            <div class="node-icon">👑</div>
+                                            <div class="node-label">Master 1</div>
+                                            <div class="node-operations">Reads & Writes</div>
+                                        </div>
+                                        <div class="bidirectional-replication">
+                                            <div class="arrow-up">↑</div>
+                                            <div class="replication-label">Bidirectional<br/>Replication</div>
+                                            <div class="arrow-down">↓</div>
+                                        </div>
+                                        <div class="master-node">
+                                            <div class="node-icon">👑</div>
+                                            <div class="node-label">Master 2</div>
+                                            <div class="node-operations">Reads & Writes</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="advantages">
+                                    <strong>Advantages:</strong>
+                                    <ul>
+                                        <li>No single point of failure</li>
+                                        <li>Both read and write operations scale</li>
+                                        <li>Better availability</li>
+                                    </ul>
+                                </div>
+                                <div class="disadvantages">
+                                    <strong>Disadvantages:</strong>
+                                    <ul>
+                                        <li>Conflict resolution needed</li>
+                                        <li>More complex to implement</li>
+                                        <li>Potential for write conflicts</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="availability-numbers" class="topic-section">
+                    <h2>Availability in Numbers</h2>
+                    <div class="content-block">
+                        <p>Availability is often quantified in terms of "nines". Here's what different availability percentages mean in terms of downtime:</p>
+                        
+                        <div class="availability-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Availability %</th>
+                                        <th>Downtime per Year</th>
+                                        <th>Downtime per Month</th>
+                                        <th>Downtime per Week</th>
+                                        <th>Common Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>99%</td>
+                                        <td>3.65 days</td>
+                                        <td>7.31 hours</td>
+                                        <td>1.68 hours</td>
+                                        <td>Two nines</td>
+                                    </tr>
+                                    <tr>
+                                        <td>99.9%</td>
+                                        <td>8.77 hours</td>
+                                        <td>43.83 minutes</td>
+                                        <td>10.08 minutes</td>
+                                        <td>Three nines</td>
+                                    </tr>
+                                    <tr class="highlight">
+                                        <td>99.99%</td>
+                                        <td>52.60 minutes</td>
+                                        <td>4.38 minutes</td>
+                                        <td>1.01 minutes</td>
+                                        <td>Four nines</td>
+                                    </tr>
+                                    <tr class="highlight">
+                                        <td>99.999%</td>
+                                        <td>5.26 minutes</td>
+                                        <td>26.30 seconds</td>
+                                        <td>6.05 seconds</td>
+                                        <td>Five nines</td>
+                                    </tr>
+                                    <tr>
+                                        <td>99.9999%</td>
+                                        <td>31.56 seconds</td>
+                                        <td>2.63 seconds</td>
+                                        <td>0.61 seconds</td>
+                                        <td>Six nines</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="availability-insights">
+                            <h3>Key Insights</h3>
+                            <ul>
+                                <li><strong>99.9% (Three nines)</strong> is acceptable for most web applications</li>
+                                <li><strong>99.99% (Four nines)</strong> is the target for critical business applications</li>
+                                <li><strong>99.999% (Five nines)</strong> is extremely difficult and expensive to achieve</li>
+                                <li>Each additional nine requires exponentially more effort and cost</li>
+                            </ul>
+                        </div>
+
+                        <div class="availability-factors">
+                            <h3>Factors Affecting Availability</h3>
+                            <div class="factor-grid">
+                                <div class="factor-card">
+                                    <h4>Redundancy</h4>
+                                    <p>Multiple instances of components to handle failures</p>
+                                </div>
+                                <div class="factor-card">
+                                    <h4>Monitoring</h4>
+                                    <p>Early detection of issues before they cause outages</p>
+                                </div>
+                                <div class="factor-card">
+                                    <h4>Failover</h4>
+                                    <p>Automatic switching to backup systems</p>
+                                </div>
+                                <div class="factor-card">
+                                    <h4>Load Balancing</h4>
+                                    <p>Distributing traffic across multiple servers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="domain-name-system" class="topic-section">
+                    <h2>Domain Name System (DNS)</h2>
+                    <div class="content-block">
+                        <p>DNS translates domain names (like www.example.com) to IP addresses (like 192.168.1.1). It's a hierarchical and distributed naming system for computers, services, or other resources connected to the Internet.</p>
+                        
+                        <div class="dns-flow">
+                            <h3>DNS Resolution Process</h3>
+                            <div class="dns-steps">
+                                <div class="dns-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>User enters URL</h4>
+                                        <p>www.example.com</p>
+                                    </div>
+                                </div>
+                                <div class="arrow-down">↓</div>
+                                <div class="dns-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Check Browser Cache</h4>
+                                        <p>Is IP address cached?</p>
+                                    </div>
+                                </div>
+                                <div class="arrow-down">↓</div>
+                                <div class="dns-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Check OS Cache</h4>
+                                        <p>Query local DNS cache</p>
+                                    </div>
+                                </div>
+                                <div class="arrow-down">↓</div>
+                                <div class="dns-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Query DNS Resolver</h4>
+                                        <p>ISP's DNS server</p>
+                                    </div>
+                                </div>
+                                <div class="arrow-down">↓</div>
+                                <div class="dns-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <h4>Root Name Server</h4>
+                                        <p>Returns .com TLD server</p>
+                                    </div>
+                                </div>
+                                <div class="arrow-down">↓</div>
+                                <div class="dns-step">
+                                    <div class="step-number">6</div>
+                                    <div class="step-content">
+                                        <h4>TLD Name Server</h4>
+                                        <p>Returns example.com nameserver</p>
+                                    </div>
+                                </div>
+                                <div class="arrow-down">↓</div>
+                                <div class="dns-step">
+                                    <div class="step-number">7</div>
+                                    <div class="step-content">
+                                        <h4>Authoritative Name Server</h4>
+                                        <p>Returns IP: 192.168.1.1</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dns-records">
+                            <h3>Common DNS Record Types</h3>
+                            <div class="record-grid">
+                                <div class="record-card">
+                                    <h4>A Record</h4>
+                                    <p>Maps domain to IPv4 address</p>
+                                    <code>example.com → 192.168.1.1</code>
+                                </div>
+                                <div class="record-card">
+                                    <h4>AAAA Record</h4>
+                                    <p>Maps domain to IPv6 address</p>
+                                    <code>example.com → 2001:0db8::1</code>
+                                </div>
+                                <div class="record-card">
+                                    <h4>CNAME Record</h4>
+                                    <p>Canonical name (alias)</p>
+                                    <code>www.example.com → example.com</code>
+                                </div>
+                                <div class="record-card">
+                                    <h4>MX Record</h4>
+                                    <p>Mail exchange server</p>
+                                    <code>example.com → mail.example.com</code>
+                                </div>
+                                <div class="record-card">
+                                    <h4>NS Record</h4>
+                                    <p>Name server</p>
+                                    <code>example.com → ns1.example.com</code>
+                                </div>
+                                <div class="record-card">
+                                    <h4>TXT Record</h4>
+                                    <p>Text information</p>
+                                    <code>Used for verification, SPF, etc.</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dns-considerations">
+                            <h3>DNS Considerations</h3>
+                            <ul>
+                                <li><strong>Caching:</strong> DNS responses are cached at multiple levels to improve performance</li>
+                                <li><strong>TTL (Time To Live):</strong> Determines how long DNS records are cached</li>
+                                <li><strong>DNS Propagation:</strong> Changes can take time to propagate globally (up to 48 hours)</li>
+                                <li><strong>Load Balancing:</strong> DNS can return different IPs for load distribution</li>
+                                <li><strong>Failover:</strong> DNS can route traffic away from failed servers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="content-delivery-network" class="topic-section">
+                    <h2>Content Delivery Network (CDN)</h2>
+                    <div class="content-block">
+                        <p>A CDN is a globally distributed network of proxy servers that delivers content from locations closer to users. CDNs improve performance, reduce latency, and decrease bandwidth costs.</p>
+                        
+                        <div class="cdn-visualization">
+                            <h3>How CDN Works</h3>
+                            <div class="cdn-map">
+                                <div class="origin-server">
+                                    <div class="server-icon">🏢</div>
+                                    <div class="server-label">Origin Server</div>
+                                    <div class="server-location">US East</div>
+                                </div>
+                                <div class="cdn-edges">
+                                    <div class="edge-server" style="animation-delay: 0s;">
+                                        <div class="edge-icon">📡</div>
+                                        <div class="edge-label">CDN Edge</div>
+                                        <div class="edge-location">Europe</div>
+                                    </div>
+                                    <div class="edge-server" style="animation-delay: 0.2s;">
+                                        <div class="edge-icon">📡</div>
+                                        <div class="edge-label">CDN Edge</div>
+                                        <div class="edge-location">Asia</div>
+                                    </div>
+                                    <div class="edge-server" style="animation-delay: 0.4s;">
+                                        <div class="edge-icon">📡</div>
+                                        <div class="edge-label">CDN Edge</div>
+                                        <div class="edge-location">Australia</div>
+                                    </div>
+                                    <div class="edge-server" style="animation-delay: 0.6s;">
+                                        <div class="edge-icon">📡</div>
+                                        <div class="edge-label">CDN Edge</div>
+                                        <div class="edge-location">South America</div>
+                                    </div>
+                                </div>
+                                <div class="users-layer">
+                                    <div class="user-group">
+                                        <div class="user-icon">👥</div>
+                                        <div class="user-label">Users</div>
+                                        <div class="latency-info">Low latency</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cdn-types">
+                            <h3>CDN Delivery Methods</h3>
+                            <div class="delivery-methods">
+                                <div class="method-card">
+                                    <h4>Push CDNs</h4>
+                                    <p>Content is uploaded to CDN servers when it changes. You're responsible for providing content and updating it.</p>
+                                    <div class="method-pros">
+                                        <strong>Best for:</strong> Sites with small traffic, content that doesn't change often
+                                    </div>
+                                </div>
+                                <div class="method-card">
+                                    <h4>Pull CDNs</h4>
+                                    <p>CDN grabs content from your server when a user requests it for the first time. Content is cached on CDN until TTL expires.</p>
+                                    <div class="method-pros">
+                                        <strong>Best for:</strong> Sites with heavy traffic, frequently changing content
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cdn-benefits">
+                            <h3>Benefits of Using a CDN</h3>
+                            <div class="benefit-grid">
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">⚡</div>
+                                    <h4>Improved Performance</h4>
+                                    <p>Content served from nearest location reduces latency</p>
+                                </div>
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">🛡️</div>
+                                    <h4>DDoS Protection</h4>
+                                    <p>Distributed nature helps absorb traffic spikes</p>
+                                </div>
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">💰</div>
+                                    <h4>Reduced Costs</h4>
+                                    <p>Less bandwidth usage on origin server</p>
+                                </div>
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">🌍</div>
+                                    <h4>Global Reach</h4>
+                                    <p>Serve users worldwide with low latency</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cdn-examples">
+                            <h3>Popular CDN Providers</h3>
+                            <ul>
+                                <li><strong>Cloudflare:</strong> Global CDN with DDoS protection and security features</li>
+                                <li><strong>Amazon CloudFront:</strong> AWS's CDN service integrated with other AWS services</li>
+                                <li><strong>Akamai:</strong> One of the largest and oldest CDN providers</li>
+                                <li><strong>Fastly:</strong> Real-time CDN with edge computing capabilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="load-balancers" class="topic-section">
+                    <h2>Load Balancers</h2>
+                    <div class="content-block">
+                        <p>Load balancers distribute incoming network traffic across multiple servers to ensure no single server bears too much demand. This improves responsiveness and availability of applications.</p>
+                        
+                        <div class="load-balancer-diagram">
+                            <h3>Load Balancer Architecture</h3>
+                            <div class="lb-flow">
+                                <div class="users-section">
+                                    <div class="user-icon">👤</div>
+                                    <div class="user-icon">👤</div>
+                                    <div class="user-icon">👤</div>
+                                    <div class="user-icon">👤</div>
+                                    <div class="section-label">Users</div>
+                                </div>
+                                <div class="arrow-section">
+                                    <div class="arrow-line">→</div>
+                                    <div class="arrow-line">→</div>
+                                    <div class="arrow-line">→</div>
+                                    <div class="arrow-line">→</div>
+                                </div>
+                                <div class="lb-section">
+                                    <div class="lb-box">
+                                        <div class="lb-icon">⚖️</div>
+                                        <div class="lb-label">Load Balancer</div>
+                                        <div class="lb-algorithm">Distributes traffic</div>
+                                    </div>
+                                </div>
+                                <div class="arrow-section">
+                                    <div class="arrow-line">→</div>
+                                    <div class="arrow-line">→</div>
+                                    <div class="arrow-line">→</div>
+                                </div>
+                                <div class="servers-section">
+                                    <div class="server-box">
+                                        <div class="server-icon">🖥️</div>
+                                        <div class="server-label">Server 1</div>
+                                    </div>
+                                    <div class="server-box">
+                                        <div class="server-icon">🖥️</div>
+                                        <div class="server-label">Server 2</div>
+                                    </div>
+                                    <div class="server-box">
+                                        <div class="server-icon">🖥️</div>
+                                        <div class="server-label">Server 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lb-benefits">
+                            <h3>Benefits of Load Balancing</h3>
+                            <div class="benefit-list">
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">📈</div>
+                                    <div class="benefit-content">
+                                        <h4>Scalability</h4>
+                                        <p>Easily add or remove servers based on demand</p>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">🔄</div>
+                                    <div class="benefit-content">
+                                        <h4>Redundancy</h4>
+                                        <p>If one server fails, traffic is routed to healthy servers</p>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">⚡</div>
+                                    <div class="benefit-content">
+                                        <h4>Performance</h4>
+                                        <p>Prevents any single server from becoming a bottleneck</p>
+                                    </div>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">🛠️</div>
+                                    <div class="benefit-content">
+                                        <h4>Maintenance</h4>
+                                        <p>Perform updates without downtime by taking servers offline one at a time</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lb-health-checks">
+                            <h3>Health Checks</h3>
+                            <p>Load balancers continuously monitor server health to ensure traffic is only sent to healthy servers:</p>
+                            <div class="health-check-flow">
+                                <div class="health-step">
+                                    <div class="step-icon">🏥</div>
+                                    <div class="step-text">Load balancer sends periodic health check requests</div>
+                                </div>
+                                <div class="arrow-right">→</div>
+                                <div class="health-step">
+                                    <div class="step-icon">✅</div>
+                                    <div class="step-text">Healthy servers respond successfully</div>
+                                </div>
+                                <div class="arrow-right">→</div>
+                                <div class="health-step">
+                                    <div class="step-icon">❌</div>
+                                    <div class="step-text">Unhealthy servers are removed from rotation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="load-balancing-algorithms" class="topic-section">
+                    <h2>Load Balancing Algorithms</h2>
+                    <div class="content-block">
+                        <p>Different algorithms determine how load balancers distribute traffic across servers. The choice depends on your specific requirements and traffic patterns.</p>
+                        
+                        <div class="algorithm-grid">
+                            <div class="algorithm-card">
+                                <h3>Round Robin</h3>
+                                <div class="algorithm-visual">
+                                    <div class="request-flow">
+                                        <div class="request">Req 1 → Server 1</div>
+                                        <div class="request">Req 2 → Server 2</div>
+                                        <div class="request">Req 3 → Server 3</div>
+                                        <div class="request">Req 4 → Server 1</div>
+                                    </div>
+                                </div>
+                                <p>Distributes requests sequentially across all servers in rotation.</p>
+                                <div class="algorithm-details">
+                                    <strong>Best for:</strong> Servers with similar capabilities
+                                    <br><strong>Pros:</strong> Simple, fair distribution
+                                    <br><strong>Cons:</strong> Doesn't consider server load or capacity
+                                </div>
+                            </div>
+
+                            <div class="algorithm-card">
+                                <h3>Least Connections</h3>
+                                <div class="algorithm-visual">
+                                    <div class="server-loads">
+                                        <div class="server-load">S1: 5 connections</div>
+                                        <div class="server-load highlight">S2: 2 connections ← New request</div>
+                                        <div class="server-load">S3: 7 connections</div>
+                                    </div>
+                                </div>
+                                <p>Routes traffic to the server with the fewest active connections.</p>
+                                <div class="algorithm-details">
+                                    <strong>Best for:</strong> Long-lived connections
+                                    <br><strong>Pros:</strong> Balances load dynamically
+                                    <br><strong>Cons:</strong> More complex to implement
+                                </div>
+                            </div>
+
+                            <div class="algorithm-card">
+                                <h3>Weighted Round Robin</h3>
+                                <div class="algorithm-visual">
+                                    <div class="weighted-flow">
+                                        <div class="server-weight">S1 (weight: 3): 60% traffic</div>
+                                        <div class="server-weight">S2 (weight: 2): 40% traffic</div>
+                                    </div>
+                                </div>
+                                <p>Assigns weights to servers based on their capacity, distributing more traffic to higher-capacity servers.</p>
+                                <div class="algorithm-details">
+                                    <strong>Best for:</strong> Servers with different capacities
+                                    <br><strong>Pros:</strong> Accounts for server capabilities
+                                    <br><strong>Cons:</strong> Requires manual weight configuration
+                                </div>
+                            </div>
+
+                            <div class="algorithm-card">
+                                <h3>IP Hash</h3>
+                                <div class="algorithm-visual">
+                                    <div class="hash-flow">
+                                        <div class="hash-item">IP: 192.168.1.1 → hash → Server 2</div>
+                                        <div class="hash-item">IP: 192.168.1.2 → hash → Server 1</div>
+                                        <div class="hash-item">IP: 192.168.1.1 → hash → Server 2</div>
+                                    </div>
+                                </div>
+                                <p>Uses client IP address to determine which server receives the request. Same client always goes to same server.</p>
+                                <div class="algorithm-details">
+                                    <strong>Best for:</strong> Session persistence requirements
+                                    <br><strong>Pros:</strong> Maintains session affinity
+                                    <br><strong>Cons:</strong> Uneven distribution if IPs not diverse
+                                </div>
+                            </div>
+
+                            <div class="algorithm-card">
+                                <h3>Least Response Time</h3>
+                                <div class="algorithm-visual">
+                                    <div class="response-times">
+                                        <div class="server-time">S1: 150ms</div>
+                                        <div class="server-time highlight">S2: 50ms ← New request</div>
+                                        <div class="server-time">S3: 200ms</div>
+                                    </div>
+                                </div>
+                                <p>Routes to the server with the fastest response time and fewest active connections.</p>
+                                <div class="algorithm-details">
+                                    <strong>Best for:</strong> Performance-critical applications
+                                    <br><strong>Pros:</strong> Optimizes for speed
+                                    <br><strong>Cons:</strong> Requires response time monitoring
+                                </div>
+                            </div>
+
+                            <div class="algorithm-card">
+                                <h3>Random</h3>
+                                <div class="algorithm-visual">
+                                    <div class="random-flow">
+                                        <div class="random-item">Req 1 → Server 2</div>
+                                        <div class="random-item">Req 2 → Server 1</div>
+                                        <div class="random-item">Req 3 → Server 2</div>
+                                        <div class="random-item">Req 4 → Server 3</div>
+                                    </div>
+                                </div>
+                                <p>Randomly selects a server for each request.</p>
+                                <div class="algorithm-details">
+                                    <strong>Best for:</strong> Simple setups with similar servers
+                                    <br><strong>Pros:</strong> Very simple, no state needed
+                                    <br><strong>Cons:</strong> May not distribute evenly in short term
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="layer-4-vs-layer-7" class="topic-section">
+                    <h2>Layer 4 vs Layer 7 Load Balancing</h2>
+                    <div class="content-block">
+                        <p>Load balancers can operate at different layers of the OSI model, each with its own advantages and use cases.</p>
+                        
+                        <div class="layer-comparison">
+                            <div class="layer-card">
+                                <h3>Layer 4 (Transport Layer)</h3>
+                                <div class="layer-description">
+                                    <p>Operates at the transport layer, making routing decisions based on IP address and TCP/UDP port.</p>
+                                </div>
+                                <div class="layer-details">
+                                    <h4>How it works:</h4>
+                                    <ul>
+                                        <li>Examines packet headers (source/destination IP and port)</li>
+                                        <li>Makes routing decisions without inspecting packet content</li>
+                                        <li>Maintains connection state</li>
+                                        <li>Faster because it doesn't need to decrypt or inspect content</li>
+                                    </ul>
+                                </div>
+                                <div class="layer-pros-cons">
+                                    <div class="pros">
+                                        <strong>Advantages:</strong>
+                                        <ul>
+                                            <li>Faster performance</li>
+                                            <li>Lower latency</li>
+                                            <li>Can handle any protocol</li>
+                                            <li>More secure (doesn't decrypt traffic)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons">
+                                        <strong>Disadvantages:</strong>
+                                        <ul>
+                                            <li>Limited routing intelligence</li>
+                                            <li>Cannot make content-based decisions</li>
+                                            <li>No application-level features</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="use-case">
+                                    <strong>Use cases:</strong> High-performance scenarios, non-HTTP protocols, when you don't need content inspection
+                                </div>
+                            </div>
+
+                            <div class="layer-card">
+                                <h3>Layer 7 (Application Layer)</h3>
+                                <div class="layer-description">
+                                    <p>Operates at the application layer, making routing decisions based on content of the request (URLs, headers, cookies, etc.).</p>
+                                </div>
+                                <div class="layer-details">
+                                    <h4>How it works:</h4>
+                                    <ul>
+                                        <li>Inspects HTTP headers, URLs, and content</li>
+                                        <li>Can route based on application-specific data</li>
+                                        <li>Can modify requests and responses</li>
+                                        <li>Terminates and re-establishes connections</li>
+                                    </ul>
+                                </div>
+                                <div class="layer-pros-cons">
+                                    <div class="pros">
+                                        <strong>Advantages:</strong>
+                                        <ul>
+                                            <li>Intelligent routing (URL-based, header-based)</li>
+                                            <li>Can perform SSL termination</li>
+                                            <li>Content caching</li>
+                                            <li>Request/response modification</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons">
+                                        <strong>Disadvantages:</strong>
+                                        <ul>
+                                            <li>Higher latency</li>
+                                            <li>More resource intensive</li>
+                                            <li>HTTP/HTTPS specific</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="use-case">
+                                    <strong>Use cases:</strong> Microservices routing, A/B testing, content-based routing, SSL termination
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="routing-examples">
+                            <h3>Layer 7 Routing Examples</h3>
+                            <div class="routing-example-grid">
+                                <div class="routing-example">
+                                    <h4>URL-based Routing</h4>
+                                    <code>
+                                        /api/* → API servers<br>
+                                        /images/* → Image servers<br>
+                                        /* → Web servers
+                                    </code>
+                                </div>
+                                <div class="routing-example">
+                                    <h4>Header-based Routing</h4>
+                                    <code>
+                                        User-Agent: Mobile → Mobile servers<br>
+                                        User-Agent: Desktop → Desktop servers
+                                    </code>
+                                </div>
+                                <div class="routing-example">
+                                    <h4>Cookie-based Routing</h4>
+                                    <code>
+                                        version=beta → Beta servers<br>
+                                        version=stable → Production servers
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="horizontal-scaling" class="topic-section">
+                    <h2>Horizontal Scaling</h2>
+                    <div class="content-block">
+                        <p>Horizontal scaling (scaling out) means adding more machines to your pool of resources, whereas vertical scaling (scaling up) means adding more power (CPU, RAM) to an existing machine.</p>
+                        
+                        <div class="scaling-comparison">
+                            <div class="scaling-type">
+                                <h3>Horizontal Scaling (Scale Out)</h3>
+                                <div class="scaling-visual">
+                                    <div class="scaling-stage">
+                                        <div class="stage-label">Initial:</div>
+                                        <div class="server-icon">🖥️</div>
+                                    </div>
+                                    <div class="arrow-right">→</div>
+                                    <div class="scaling-stage">
+                                        <div class="stage-label">Scaled:</div>
+                                        <div class="server-group">
+                                            <div class="server-icon">🖥️</div>
+                                            <div class="server-icon">🖥️</div>
+                                            <div class="server-icon">🖥️</div>
+                                            <div class="server-icon">🖥️</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="scaling-details">
+                                    <h4>Characteristics:</h4>
+                                    <ul>
+                                        <li>Add more machines to handle increased load</li>
+                                        <li>Each machine handles a portion of the workload</li>
+                                        <li>Requires load balancing</li>
+                                        <li>Better fault tolerance (no single point of failure)</li>
+                                    </ul>
+                                </div>
+                                <div class="pros-cons">
+                                    <div class="pros">
+                                        <strong>Advantages:</strong>
+                                        <ul>
+                                            <li>Virtually unlimited scaling potential</li>
+                                            <li>Better fault tolerance</li>
+                                            <li>Can use commodity hardware</li>
+                                            <li>Easier to upgrade incrementally</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons">
+                                        <strong>Disadvantages:</strong>
+                                        <ul>
+                                            <li>More complex architecture</li>
+                                            <li>Data consistency challenges</li>
+                                            <li>Network overhead</li>
+                                            <li>Requires load balancing</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="scaling-type">
+                                <h3>Vertical Scaling (Scale Up)</h3>
+                                <div class="scaling-visual">
+                                    <div class="scaling-stage">
+                                        <div class="stage-label">Initial:</div>
+                                        <div class="server-specs">
+                                            <div class="server-icon">🖥️</div>
+                                            <div class="specs">4 CPU<br>8GB RAM</div>
+                                        </div>
+                                    </div>
+                                    <div class="arrow-right">→</div>
+                                    <div class="scaling-stage">
+                                        <div class="stage-label">Scaled:</div>
+                                        <div class="server-specs">
+                                            <div class="server-icon large">🖥️</div>
+                                            <div class="specs">16 CPU<br>64GB RAM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="scaling-details">
+                                    <h4>Characteristics:</h4>
+                                    <ul>
+                                        <li>Increase resources of existing machine</li>
+                                        <li>Add more CPU, RAM, or storage</li>
+                                        <li>Simpler architecture</li>
+                                        <li>Limited by hardware constraints</li>
+                                    </ul>
+                                </div>
+                                <div class="pros-cons">
+                                    <div class="pros">
+                                        <strong>Advantages:</strong>
+                                        <ul>
+                                            <li>Simpler to implement</li>
+                                            <li>No code changes needed</li>
+                                            <li>Lower software costs</li>
+                                            <li>Easier data consistency</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons">
+                                        <strong>Disadvantages:</strong>
+                                        <ul>
+                                            <li>Hardware limits (can't scale infinitely)</li>
+                                            <li>Single point of failure</li>
+                                            <li>Downtime during upgrades</li>
+                                            <li>Expensive high-end hardware</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scaling-decision">
+                            <h3>When to Use Each Approach</h3>
+                            <div class="decision-grid">
+                                <div class="decision-card">
+                                    <h4>Choose Horizontal Scaling When:</h4>
+                                    <ul>
+                                        <li>You need to handle massive scale</li>
+                                        <li>High availability is critical</li>
+                                        <li>You want to use cloud infrastructure</li>
+                                        <li>Your application is stateless or can be made stateless</li>
+                                    </ul>
+                                </div>
+                                <div class="decision-card">
+                                    <h4>Choose Vertical Scaling When:</h4>
+                                    <ul>
+                                        <li>Your application can't be distributed easily</li>
+                                        <li>You need strong consistency</li>
+                                        <li>Initial scale is sufficient</li>
+                                        <li>Simpler operations are preferred</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
