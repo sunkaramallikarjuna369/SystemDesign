@@ -132,6 +132,26 @@
                         <a href="#instrumentation" class="nav-link">Instrumentation</a>
                         <a href="#visualization" class="nav-link">Visualization & Alerts</a>
                     </div>
+
+                    <div class="nav-section">
+                        <h4>Cloud Platforms</h4>
+                        <a href="#cloud-platforms" class="nav-link">Cloud Platforms Overview</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Data Engineering</h4>
+                        <a href="#data-engineering" class="nav-link">Data Engineering</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Data Science</h4>
+                        <a href="#data-science" class="nav-link">Data Science</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <h4>Data Analytics</h4>
+                        <a href="#data-analytics" class="nav-link">Data Analytics</a>
+                    </div>
                 </div>
             </nav>
 
@@ -1535,6 +1555,452 @@
                                         <li>Simpler operations are preferred</li>
                                     </ul>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Cloud Platforms Section -->
+                <section id="cloud-platforms" class="content-section">
+                    <h2>Cloud Platforms Overview</h2>
+                    <div class="section-content">
+                        <p>Cloud platforms provide on-demand computing resources and services over the internet. The three major cloud providers are AWS, Azure, and Google Cloud Platform (GCP).</p>
+                        
+                        <div class="comparison-grid">
+                            <div class="comparison-card">
+                                <h3>☁️ Amazon Web Services (AWS)</h3>
+                                <div class="badge">Market Leader - ~32% Market Share</div>
+                                <h4>Key Services:</h4>
+                                <ul>
+                                    <li><strong>EC2:</strong> Virtual servers in the cloud</li>
+                                    <li><strong>S3:</strong> Object storage service</li>
+                                    <li><strong>RDS:</strong> Managed relational databases</li>
+                                    <li><strong>Lambda:</strong> Serverless compute</li>
+                                    <li><strong>DynamoDB:</strong> NoSQL database</li>
+                                    <li><strong>CloudFront:</strong> CDN service</li>
+                                    <li><strong>EKS:</strong> Managed Kubernetes</li>
+                                    <li><strong>Redshift:</strong> Data warehousing</li>
+                                </ul>
+                                <h4>Strengths:</h4>
+                                <ul>
+                                    <li>Most mature and comprehensive service catalog</li>
+                                    <li>Largest global infrastructure</li>
+                                    <li>Extensive third-party integrations</li>
+                                    <li>Strong enterprise support</li>
+                                </ul>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h3>☁️ Microsoft Azure</h3>
+                                <div class="badge">Enterprise Focus - ~23% Market Share</div>
+                                <h4>Key Services:</h4>
+                                <ul>
+                                    <li><strong>Virtual Machines:</strong> Compute instances</li>
+                                    <li><strong>Blob Storage:</strong> Object storage</li>
+                                    <li><strong>Azure SQL:</strong> Managed SQL databases</li>
+                                    <li><strong>Azure Functions:</strong> Serverless compute</li>
+                                    <li><strong>Cosmos DB:</strong> Multi-model NoSQL database</li>
+                                    <li><strong>Azure CDN:</strong> Content delivery</li>
+                                    <li><strong>AKS:</strong> Managed Kubernetes</li>
+                                    <li><strong>Synapse Analytics:</strong> Data warehousing</li>
+                                </ul>
+                                <h4>Strengths:</h4>
+                                <ul>
+                                    <li>Seamless integration with Microsoft products</li>
+                                    <li>Strong hybrid cloud capabilities</li>
+                                    <li>Excellent for .NET applications</li>
+                                    <li>Active Directory integration</li>
+                                </ul>
+                            </div>
+
+                            <div class="comparison-card">
+                                <h3>☁️ Google Cloud Platform (GCP)</h3>
+                                <div class="badge">Innovation Leader - ~11% Market Share</div>
+                                <h4>Key Services:</h4>
+                                <ul>
+                                    <li><strong>Compute Engine:</strong> Virtual machines</li>
+                                    <li><strong>Cloud Storage:</strong> Object storage</li>
+                                    <li><strong>Cloud SQL:</strong> Managed databases</li>
+                                    <li><strong>Cloud Functions:</strong> Serverless compute</li>
+                                    <li><strong>Firestore:</strong> NoSQL document database</li>
+                                    <li><strong>Cloud CDN:</strong> Content delivery</li>
+                                    <li><strong>GKE:</strong> Managed Kubernetes</li>
+                                    <li><strong>BigQuery:</strong> Data warehousing & analytics</li>
+                                </ul>
+                                <h4>Strengths:</h4>
+                                <ul>
+                                    <li>Best-in-class data analytics and ML services</li>
+                                    <li>Superior networking infrastructure</li>
+                                    <li>Kubernetes expertise (originated at Google)</li>
+                                    <li>Competitive pricing</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Common Cloud Architecture Patterns</h3>
+                        <div class="pattern-grid">
+                            <div class="pattern-card">
+                                <h4>🏗️ Multi-Tier Architecture</h4>
+                                <p>Separate presentation, application, and data layers for scalability and maintainability.</p>
+                                <ul>
+                                    <li>Web Tier → Load Balancer</li>
+                                    <li>App Tier → Auto Scaling Group</li>
+                                    <li>Data Tier → Managed Database</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="pattern-card">
+                                <h4>🔄 Microservices</h4>
+                                <p>Decompose applications into small, independent services that communicate via APIs.</p>
+                                <ul>
+                                    <li>API Gateway</li>
+                                    <li>Service Mesh (Istio/Linkerd)</li>
+                                    <li>Container Orchestration (K8s)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="pattern-card">
+                                <h4>⚡ Serverless</h4>
+                                <p>Run code without managing servers, paying only for actual compute time used.</p>
+                                <ul>
+                                    <li>API Gateway → Functions</li>
+                                    <li>Event-Driven Triggers</li>
+                                    <li>Managed Services</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="pattern-card">
+                                <h4>📊 Event-Driven</h4>
+                                <p>Components communicate through events, enabling loose coupling and scalability.</p>
+                                <ul>
+                                    <li>Event Producers</li>
+                                    <li>Message Queue/Event Bus</li>
+                                    <li>Event Consumers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Engineering Section -->
+                <section id="data-engineering" class="content-section">
+                    <h2>Data Engineering System Design</h2>
+                    <div class="section-content">
+                        <p>Data engineering focuses on designing and building systems for collecting, storing, and analyzing data at scale. It involves creating robust data pipelines and infrastructure.</p>
+                        
+                        <h3>Data Pipeline Architecture</h3>
+                        <div class="pipeline-stages">
+                            <div class="stage-box">
+                                <h4>1. Data Ingestion</h4>
+                                <ul>
+                                    <li><strong>Batch Ingestion:</strong> Scheduled data loads (ETL)</li>
+                                    <li><strong>Stream Ingestion:</strong> Real-time data (Kafka, Kinesis)</li>
+                                    <li><strong>Change Data Capture:</strong> Database changes (Debezium)</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Apache Kafka, AWS Kinesis, Azure Event Hubs, Google Pub/Sub</p>
+                            </div>
+                            
+                            <div class="stage-box">
+                                <h4>2. Data Processing</h4>
+                                <ul>
+                                    <li><strong>Batch Processing:</strong> Large-scale data processing (Spark, MapReduce)</li>
+                                    <li><strong>Stream Processing:</strong> Real-time processing (Flink, Storm)</li>
+                                    <li><strong>Data Transformation:</strong> Cleaning, enrichment, aggregation</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Apache Spark, Apache Flink, AWS Glue, Azure Databricks</p>
+                            </div>
+                            
+                            <div class="stage-box">
+                                <h4>3. Data Storage</h4>
+                                <ul>
+                                    <li><strong>Data Lake:</strong> Raw data storage (S3, ADLS, GCS)</li>
+                                    <li><strong>Data Warehouse:</strong> Structured analytics (Redshift, Snowflake)</li>
+                                    <li><strong>Data Lakehouse:</strong> Unified architecture (Delta Lake, Iceberg)</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Amazon S3, Snowflake, Delta Lake, BigQuery</p>
+                            </div>
+                            
+                            <div class="stage-box">
+                                <h4>4. Data Consumption</h4>
+                                <ul>
+                                    <li><strong>BI Tools:</strong> Dashboards and reports (Tableau, Power BI)</li>
+                                    <li><strong>ML Models:</strong> Training and inference</li>
+                                    <li><strong>APIs:</strong> Data access for applications</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Tableau, Power BI, Looker, Superset</p>
+                            </div>
+                        </div>
+
+                        <h3>Data Architecture Patterns</h3>
+                        <div class="architecture-comparison">
+                            <div class="architecture-type">
+                                <h4>Lambda Architecture</h4>
+                                <p><strong>Layers:</strong></p>
+                                <ul>
+                                    <li>Batch Layer → Historical Data Processing</li>
+                                    <li>Speed Layer → Real-time Processing</li>
+                                    <li>Serving Layer → Query Results</li>
+                                </ul>
+                                <p><strong>Use Case:</strong> When you need both batch and real-time processing with eventual consistency.</p>
+                                <p><strong>Pros:</strong> Handles both batch and real-time, fault-tolerant</p>
+                                <p><strong>Cons:</strong> Complex to maintain, duplicate logic</p>
+                            </div>
+                            
+                            <div class="architecture-type">
+                                <h4>Kappa Architecture</h4>
+                                <p><strong>Layers:</strong></p>
+                                <ul>
+                                    <li>Stream Processing Layer → All Data as Streams</li>
+                                    <li>Serving Layer → Query Results</li>
+                                </ul>
+                                <p><strong>Use Case:</strong> When all data can be treated as streams.</p>
+                                <p><strong>Pros:</strong> Simpler than Lambda, single codebase</p>
+                                <p><strong>Cons:</strong> Requires reprocessing for historical data</p>
+                            </div>
+                            
+                            <div class="architecture-type">
+                                <h4>Data Mesh</h4>
+                                <p><strong>Principles:</strong></p>
+                                <ul>
+                                    <li>Domain-Oriented Data Ownership</li>
+                                    <li>Data as a Product</li>
+                                    <li>Self-Serve Data Infrastructure</li>
+                                    <li>Federated Computational Governance</li>
+                                </ul>
+                                <p><strong>Use Case:</strong> Large organizations with multiple data domains.</p>
+                                <p><strong>Pros:</strong> Scalable, domain ownership, decentralized</p>
+                                <p><strong>Cons:</strong> Requires organizational change, complex governance</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Science Section -->
+                <section id="data-science" class="content-section">
+                    <h2>Data Science System Design</h2>
+                    <div class="section-content">
+                        <p>Data science system design focuses on building scalable infrastructure for machine learning model development, training, deployment, and monitoring.</p>
+                        
+                        <h3>Machine Learning Lifecycle</h3>
+                        <div class="ml-stages">
+                            <div class="ml-stage-card">
+                                <div class="stage-number">1</div>
+                                <h4>Problem Definition</h4>
+                                <ul>
+                                    <li>Define business objectives</li>
+                                    <li>Identify success metrics</li>
+                                    <li>Assess feasibility</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="ml-stage-card">
+                                <div class="stage-number">2</div>
+                                <h4>Data Collection & Preparation</h4>
+                                <ul>
+                                    <li>Gather relevant data</li>
+                                    <li>Clean and preprocess</li>
+                                    <li>Feature engineering</li>
+                                    <li>Train/test split</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="ml-stage-card">
+                                <div class="stage-number">3</div>
+                                <h4>Model Development</h4>
+                                <ul>
+                                    <li>Select algorithms</li>
+                                    <li>Train models</li>
+                                    <li>Hyperparameter tuning</li>
+                                    <li>Cross-validation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="ml-stage-card">
+                                <div class="stage-number">4</div>
+                                <h4>Model Evaluation</h4>
+                                <ul>
+                                    <li>Performance metrics</li>
+                                    <li>A/B testing</li>
+                                    <li>Bias detection</li>
+                                    <li>Model comparison</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="ml-stage-card">
+                                <div class="stage-number">5</div>
+                                <h4>Model Deployment</h4>
+                                <ul>
+                                    <li>Containerization</li>
+                                    <li>API endpoints</li>
+                                    <li>Batch/real-time inference</li>
+                                    <li>Scaling strategy</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="ml-stage-card">
+                                <div class="stage-number">6</div>
+                                <h4>Monitoring & Maintenance</h4>
+                                <ul>
+                                    <li>Performance tracking</li>
+                                    <li>Model drift detection</li>
+                                    <li>Retraining pipeline</li>
+                                    <li>Incident response</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>MLOps Architecture</h3>
+                        <p>MLOps (Machine Learning Operations) brings DevOps principles to ML systems for reliable and efficient model deployment.</p>
+                        
+                        <div class="mlops-grid">
+                            <div class="mlops-card">
+                                <h4>🔄 Continuous Training (CT)</h4>
+                                <p>Automatically retrain models with new data</p>
+                                <ul>
+                                    <li>Scheduled retraining pipelines</li>
+                                    <li>Trigger-based retraining (data drift)</li>
+                                    <li>Automated hyperparameter optimization</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Kubeflow, MLflow, SageMaker</p>
+                            </div>
+                            
+                            <div class="mlops-card">
+                                <h4>📦 Model Registry</h4>
+                                <p>Centralized repository for ML models</p>
+                                <ul>
+                                    <li>Version control for models</li>
+                                    <li>Model metadata and lineage</li>
+                                    <li>Approval workflows</li>
+                                </ul>
+                                <p><strong>Tools:</strong> MLflow Registry, DVC, Weights & Biases</p>
+                            </div>
+                            
+                            <div class="mlops-card">
+                                <h4>🚀 Model Serving</h4>
+                                <p>Deploy models for inference</p>
+                                <ul>
+                                    <li>REST/gRPC APIs</li>
+                                    <li>Batch prediction</li>
+                                    <li>Real-time inference</li>
+                                    <li>A/B testing infrastructure</li>
+                                </ul>
+                                <p><strong>Tools:</strong> TensorFlow Serving, Seldon Core, KServe</p>
+                            </div>
+                            
+                            <div class="mlops-card">
+                                <h4>📊 Model Monitoring</h4>
+                                <p>Track model performance in production</p>
+                                <ul>
+                                    <li>Prediction quality metrics</li>
+                                    <li>Data drift detection</li>
+                                    <li>Model drift detection</li>
+                                    <li>Alerting and notifications</li>
+                                </ul>
+                                <p><strong>Tools:</strong> Evidently AI, Arize AI, Fiddler</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Analytics Section -->
+                <section id="data-analytics" class="content-section">
+                    <h2>Data Analytics System Design</h2>
+                    <div class="section-content">
+                        <p>Data analytics system design focuses on building scalable infrastructure for analyzing large volumes of data to derive business insights.</p>
+                        
+                        <h3>Modern Analytics Architecture</h3>
+                        <div class="analytics-layers">
+                            <div class="layer-box">
+                                <h4>Data Sources</h4>
+                                <p>Transactional Databases (OLTP), Application Logs, IoT Sensors, External APIs, File Systems</p>
+                            </div>
+                            
+                            <div class="layer-box">
+                                <h4>Data Integration Layer</h4>
+                                <p>ETL/ELT pipelines for data movement and transformation</p>
+                                <p><strong>Tools:</strong> Apache Airflow, Fivetran, Airbyte, dbt</p>
+                            </div>
+                            
+                            <div class="layer-box">
+                                <h4>Data Storage Layer</h4>
+                                <p><strong>Data Warehouse (OLAP):</strong> Snowflake, BigQuery, Redshift, Synapse</p>
+                                <p><strong>Data Lake:</strong> S3, ADLS, GCS</p>
+                            </div>
+                            
+                            <div class="layer-box">
+                                <h4>Analytics & BI Layer</h4>
+                                <p><strong>BI Tools:</strong> Tableau, Power BI, Looker</p>
+                                <p><strong>SQL Editors:</strong> Mode, Metabase, Redash</p>
+                                <p><strong>Notebooks:</strong> Jupyter, Databricks, Hex</p>
+                            </div>
+                        </div>
+
+                        <h3>OLTP vs OLAP</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Aspect</th>
+                                    <th>OLTP (Online Transaction Processing)</th>
+                                    <th>OLAP (Online Analytical Processing)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Purpose</strong></td>
+                                    <td>Day-to-day operations</td>
+                                    <td>Business intelligence and analytics</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Operations</strong></td>
+                                    <td>INSERT, UPDATE, DELETE</td>
+                                    <td>SELECT (complex queries)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Query Complexity</strong></td>
+                                    <td>Simple, short transactions</td>
+                                    <td>Complex, long-running queries</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Response Time</strong></td>
+                                    <td>Milliseconds</td>
+                                    <td>Seconds to minutes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Database Design</strong></td>
+                                    <td>Normalized (3NF)</td>
+                                    <td>Denormalized (star/snowflake schema)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Examples</strong></td>
+                                    <td>PostgreSQL, MySQL, Oracle</td>
+                                    <td>Snowflake, BigQuery, Redshift</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Real-Time Analytics</h3>
+                        <div class="realtime-grid">
+                            <div class="realtime-card">
+                                <h4>Stream Processing</h4>
+                                <p>Process data streams in real-time with low latency</p>
+                                <p><strong>Tools:</strong> Apache Flink, Apache Storm, Spark Streaming, Kafka Streams</p>
+                            </div>
+                            
+                            <div class="realtime-card">
+                                <h4>Real-Time Databases</h4>
+                                <p>Optimized for fast ingestion and query of time-series data</p>
+                                <p><strong>Tools:</strong> Apache Druid, ClickHouse, Apache Pinot, TimescaleDB</p>
+                            </div>
+                            
+                            <div class="realtime-card">
+                                <h4>Use Cases</h4>
+                                <ul>
+                                    <li>Real-time dashboards</li>
+                                    <li>Fraud detection</li>
+                                    <li>Anomaly detection</li>
+                                    <li>Live recommendations</li>
+                                    <li>IoT monitoring</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
